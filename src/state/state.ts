@@ -6,8 +6,10 @@ export const attemptsState = atom({
   default: 0,
 });
 
-const BREAK_POINT = 2;
-const INCREMENTAL_ON = BREAK_POINT + 2;
+export const MILESTONES = {
+  BREAK: 2,
+  INCREMENTAL_ON: 5,
+};
 
 export const isButtonBroken = selector({
   key: 'isButtonBroken', // unique ID (with respect to other atoms/selectors)
@@ -15,7 +17,7 @@ export const isButtonBroken = selector({
     const attempts = get(attemptsState);
 
     // TODO: There's a bug on intial positions where it may be null
-    return attempts > BREAK_POINT;
+    return attempts > MILESTONES.BREAK;
   },
 });
 
@@ -24,7 +26,7 @@ export const isButtonBreaking = selector({
   get: ({get}) => {
     const attempts = get(attemptsState);
 
-    return attempts === BREAK_POINT;
+    return attempts === MILESTONES.BREAK;
   },
 });
 
@@ -38,6 +40,6 @@ export const isIncrementalGameState = selector({
   get({get}) {
     const attempts = get(attemptsState);
 
-    return attempts >= INCREMENTAL_ON;
+    return attempts >= MILESTONES.INCREMENTAL_ON;
   },
 });

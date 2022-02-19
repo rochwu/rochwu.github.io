@@ -6,7 +6,15 @@ import {useGps} from '../GpsContext';
 
 import {MAX_AGE, Taunt, TauntProps} from './Taunt';
 
-const insults = ['lol!', 'hahaha', 'hihihi!', 'jaja', 'lmao', 'funny...'];
+const insults = [
+  'lol!',
+  'hahaha',
+  'nopeeee',
+  'close!',
+  'no!',
+  'nice try',
+  'phew',
+];
 
 const randomIndex = () => Math.floor(Math.random() * insults.length);
 
