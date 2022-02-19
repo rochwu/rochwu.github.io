@@ -1,7 +1,7 @@
 import {useEffect, useRef, VFC} from 'react';
 import {useRecoilValue} from 'recoil';
 
-import {attemptsState, isButtonBroken} from '../state';
+import {attemptsState, isIncrementalGameState} from '../state';
 import {useGps} from '../GpsContext';
 
 import {MAX_AGE, Taunt, TauntProps} from './Taunt';
@@ -13,7 +13,7 @@ const randomIndex = () => Math.floor(Math.random() * insults.length);
 export const Taunts: VFC = () => {
   const gps = useGps();
   const attempts = useRecoilValue(attemptsState);
-  const isBroken = useRecoilValue(isButtonBroken);
+  const isIncrementalGame = useRecoilValue(isIncrementalGameState);
   const taunts = useRef<Omit<TauntProps, 'attempts'>[]>([]);
 
   const previous = useRef(attempts);
@@ -21,7 +21,7 @@ export const Taunts: VFC = () => {
     previous.current = attempts;
   }, [attempts]);
 
-  if (!isBroken) {
+  if (!isIncrementalGame) {
     return null;
   }
 

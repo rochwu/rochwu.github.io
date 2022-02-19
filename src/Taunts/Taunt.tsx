@@ -11,7 +11,7 @@ const Container = styled.div({
   fontSize: FONT_SIZE,
 });
 
-export const MAX_AGE = 27;
+export const MAX_AGE = 20;
 
 export type TauntProps = Pick<Metadata, 'top' | 'left'> & {
   insult: string;
@@ -26,8 +26,6 @@ export const Taunt: VFC<TauntProps> = ({
   birthday,
   attempts,
 }) => {
-  // TODO: Match number on Taunts
-
   const age = 100 - ((attempts - birthday) / MAX_AGE) * 100;
 
   return (
