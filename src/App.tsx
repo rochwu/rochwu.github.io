@@ -6,6 +6,7 @@ import {useGps} from './GpsContext';
 import {Commentary} from './Commentary';
 import {LostText} from './LostText';
 import {Taunts} from './Taunts';
+import {IncrementalGame} from './IncrementalGame';
 
 const Container = styled.div({
   fontFamily: 'sans-serif',
@@ -37,6 +38,7 @@ export default function App() {
       <DodgingButton />
       <LostText />
       <Taunts />
+      <IncrementalGame />
     </Container>
   );
 }

@@ -57,10 +57,10 @@ export const Taunts: VFC = () => {
   }
 
   return (
-    <>
+    <div aria-hidden>
       {taunts.map((props) => (
         <Taunt {...props} />
       ))}
-    </>
+    </div>
   );
 };

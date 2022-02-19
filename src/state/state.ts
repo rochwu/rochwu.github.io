@@ -7,6 +7,7 @@ export const attemptsState = atom({
 });
 
 const BREAK_POINT = 2;
+const INCREMENTAL_ON = BREAK_POINT + 2;
 
 export const isButtonBroken = selector({
   key: 'isButtonBroken', // unique ID (with respect to other atoms/selectors)
@@ -30,4 +31,13 @@ export const isButtonBreaking = selector({
 export const breakPositionState = atom<CSSProperties | undefined>({
   key: 'breakPositionState',
   default: undefined,
+});
+
+export const isIncrementalGameState = selector({
+  key: 'isIncrementalGameState',
+  get({get}) {
+    const attempts = get(attemptsState);
+
+    return attempts >= INCREMENTAL_ON;
+  },
 });
