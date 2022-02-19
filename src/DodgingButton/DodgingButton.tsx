@@ -5,7 +5,7 @@ import {useRecoilValue, useSetRecoilState} from 'recoil';
 import {useGps} from '../GpsContext';
 import {attemptsState, breakPositionState, isButtonBreaking} from '../state';
 
-import {getNewStyle} from '../getNewStyle';
+import {newPosition} from '../newPosition';
 import {useButtonRef} from './useButtonRef';
 import {initialStyle} from './initialStyle';
 import {HidableText} from './HidableText';
@@ -52,7 +52,7 @@ export const DodgingButton: VFC = () => {
       setBreakPosition({top: position.top, left: position.left});
     }
 
-    const {top, left} = getNewStyle(gps.get('container'), gps.get('button'));
+    const {top, left} = newPosition(gps.get('container'), gps.get('button'));
 
     gps.set('button', {top, left});
 

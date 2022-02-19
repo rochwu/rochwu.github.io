@@ -3,20 +3,21 @@ import {useRecoilValue} from 'recoil';
 
 import {attemptsState, isIncrementalGameState} from '../state';
 import {useGps} from '../GpsContext';
+import {randomIndex} from '../randomIndex';
 
 import {MAX_AGE, Taunt, TauntProps} from './Taunt';
 
 const insults = [
   'lol!',
   'hahaha',
-  'nopeeee',
+  'nope nope nope',
   'close!',
-  'no!',
+  `ha! got nothin'`,
   'nice try',
-  'phew',
+  'whew...',
+  'too smooth',
+  'good attempt there, mate',
 ];
-
-const randomIndex = () => Math.floor(Math.random() * insults.length);
 
 export const Taunts: VFC = () => {
   const gps = useGps();
@@ -36,7 +37,7 @@ export const Taunts: VFC = () => {
   if (previous.current !== attempts) {
     const [first, ...rest] = taunts.current;
     const {top, left} = gps.get('button');
-    const insult = insults[randomIndex()];
+    const insult = insults[randomIndex(insults.length)];
 
     const newTaunt = {
       top,
