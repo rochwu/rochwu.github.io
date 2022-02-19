@@ -15,7 +15,7 @@ const insults = [
   `ha! got nothin'`,
   'nice try',
   'whew...',
-  'too smooth',
+  'too fast',
   'good attempt there, mate',
 ];
 

@@ -29,7 +29,7 @@ const agentOverride: CSSObject = {
 const Button = styled.button(agentOverride, {
   display: 'block',
   position: 'absolute',
-  font: 'initial',
+  lineHeight: 'initial',
 });
 
 export const DodgingButton: VFC = () => {
@@ -52,7 +52,7 @@ export const DodgingButton: VFC = () => {
       setBreakPosition({top: position.top, left: position.left});
     }
 
-    const {top, left} = newPosition(gps.get('container'), gps.get('button'));
+    const {top, left} = newPosition(gps.get('main'), gps.get('button'));
 
     gps.set('button', {top, left});
 

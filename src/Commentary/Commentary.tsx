@@ -1,14 +1,27 @@
 import styled from '@emotion/styled';
+import {SIZE} from '../constants';
+import {useResponsiveLevel} from '../ResponsiveContext';
+import {ResponsiveLevel} from '../ResponsiveContext/Context';
 
 import {useComment} from './useComment';
 
-const Container = styled.div({
-  display: 'flex',
-  justifyContent: 'center',
-  position: 'relative',
-  top: '1%',
-  zIndex: -1,
-});
+const Container = styled.div<{responsiveLevel: ResponsiveLevel}>(
+  ({responsiveLevel}) => {
+    if (responsiveLevel === ResponsiveLevel.Small) {
+      return;
+    }
+
+    return {
+      marginRight: SIZE.SCORE,
+    };
+  },
+  {
+    display: 'inline-flex',
+    justifyContent: 'center',
+    alignItems: 'end',
+    width: '100%',
+  },
+);
 
 const Comment = styled.span({
   fontSize: '1.5em',
@@ -18,8 +31,10 @@ const Comment = styled.span({
 export const Commentary = () => {
   const comment = useComment();
 
+  const level = useResponsiveLevel();
+
   return (
-    <Container aria-hidden>
+    <Container responsiveLevel={level}>
       <Comment>{comment}</Comment>
     </Container>
   );

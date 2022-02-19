@@ -1,7 +1,7 @@
 import {createContext, FC, useContext} from 'react';
 import {Metadata} from '../types';
 
-type Id = 'container' | 'button' | 'buttonText';
+type Id = 'main' | 'button' | 'buttonText';
 
 /**
  * Nothing in here causes a render
