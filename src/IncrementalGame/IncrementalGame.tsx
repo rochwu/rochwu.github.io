@@ -10,8 +10,8 @@ const FONT_SIZE = '1em';
 const Container = styled.div<{isVisible: boolean}>(
   ({isVisible}) => ({visibility: isVisible ? 'visible' : 'hidden'}),
   {
-    height: SIZE.SCORE,
-    width: SIZE.SCORE,
+    minHeight: SIZE.SCORE,
+    minWidth: SIZE.SCORE,
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
