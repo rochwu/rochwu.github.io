@@ -1,65 +1,55 @@
-import {CSSProperties, useEffect, useState, VFC} from 'react';
+import {useEffect, useRef, VFC} from 'react';
 import {useRecoilValue} from 'recoil';
-import styled from '@emotion/styled';
 
 import {attemptsState, isButtonBroken} from '../state';
 import {useGps} from '../GpsContext';
-import {Metadata} from '../types';
 
-const FONT_SIZE = '1em';
-
-const Container = styled.div({
-  position: 'absolute',
-});
+import {MAX_AGE, Taunt, TauntProps} from './Taunt';
 
 const insults = ['lol!', 'hahaha', 'hihihi!', 'jaja', 'lmao', 'funny...'];
 
 const randomIndex = () => Math.floor(Math.random() * insults.length);
 
-type TauntProps = Pick<Metadata, 'top' | 'left'> & {
-  insult: string;
-};
-
-const Taunt: VFC<TauntProps> = ({top, left, insult}) => {
-  return (
-    <Container
-      style={{
-        top: `${top}%`,
-        left: `${left}%`,
-        transform: `translateY(-${FONT_SIZE})`,
-      }}
-    >
-      {insult}
-    </Container>
-  );
-};
-
 export const Taunts: VFC = () => {
   const gps = useGps();
   const attempts = useRecoilValue(attemptsState);
   const isBroken = useRecoilValue(isButtonBroken);
-  const [taunts, setTaunts] = useState<TauntProps[]>([]);
+  const taunts = useRef<Omit<TauntProps, 'attempts'>[]>([]);
 
+  const previous = useRef(attempts);
   useEffect(() => {
-    if (!isBroken) {
-      return;
-    }
-
-    setTaunts((previous) => {
-      const {top, left} = gps.get('button');
-
-      return [...previous, {top, left, insult: insults[randomIndex()]}];
-    });
-  }, [isBroken, attempts, gps]);
+    previous.current = attempts;
+  }, [attempts]);
 
   if (!isBroken) {
     return null;
   }
 
+  if (previous.current !== attempts) {
+    const [first, ...rest] = taunts.current;
+    const {top, left} = gps.get('button');
+    const insult = insults[randomIndex()];
+
+    const newTaunt = {
+      top,
+      left,
+      insult,
+      birthday: attempts,
+    };
+
+    if (rest.length >= MAX_AGE) {
+      taunts.current = [...rest, newTaunt];
+    } else if (!first) {
+      taunts.current = [newTaunt];
+    } else {
+      taunts.current = [first, ...rest, newTaunt];
+    }
+  }
+
   return (
     <div aria-hidden>
-      {taunts.map((props) => (
-        <Taunt {...props} />
+      {taunts.current.map((props) => (
+        <Taunt key={props.birthday} {...props} attempts={attempts} />
       ))}
     </div>
   );
