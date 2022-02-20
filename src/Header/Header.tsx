@@ -1,5 +1,4 @@
 import {VFC} from 'react';
-
 import styled from '@emotion/styled';
 
 import {Commentary} from '../Commentary';

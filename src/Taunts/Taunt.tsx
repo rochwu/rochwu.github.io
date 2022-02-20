@@ -3,6 +3,8 @@ import styled from '@emotion/styled';
 
 import {Metadata} from '../types';
 
+import {MAX_AGE} from './insults';
+
 const FONT_SIZE = '0.5em';
 
 const Container = styled.div({
@@ -10,8 +12,6 @@ const Container = styled.div({
   userSelect: 'none',
   fontSize: FONT_SIZE,
 });
-
-export const MAX_AGE = 20;
 
 export type TauntProps = Pick<Metadata, 'top' | 'left'> & {
   insult: string;

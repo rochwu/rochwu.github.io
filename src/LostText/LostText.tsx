@@ -17,6 +17,8 @@ export const LostText: VFC = () => {
 
   const position = useRecoilValue(breakPositionState);
 
+  // We don't wanna flicker since the button will display:none
+  // the fuck out of there
   useLayoutEffect(() => {
     if (position) {
       const button = gps.get('button');
