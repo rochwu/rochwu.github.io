@@ -2,7 +2,7 @@ import {VFC} from 'react';
 import styled from '@emotion/styled';
 
 import {Commentary} from '../Commentary';
-import {IncrementalGame} from '../IncrementalGame';
+import {BadgeScore} from '../IncrementalGame';
 
 const Container = styled.div({
   display: 'flex',
@@ -11,7 +11,7 @@ const Container = styled.div({
 export const Header: VFC = () => {
   return (
     <Container aria-hidden>
-      <IncrementalGame />
+      <BadgeScore />
       <Commentary />
     </Container>
   );
