@@ -1,14 +1,14 @@
 export const insults = [
   'lol!',
-  'hahaha',
+  'not even close!',
   'whoa, too close, way too close!',
   'nope nope nope',
-  'not even close!',
+  'almost got it!',
   `ha! got nothin'`,
   'nice try',
   'eek!!!',
   'sooo slooow',
   'good attempt there, mate',
-  'almost!',
+  'hahaha',
   'are you even trying there?',
 ];
