@@ -7,10 +7,10 @@ const border = `${BUTTON.BORDER_SIZE}px groove ${BUTTON.COLOR}`;
 const agentOverride: CSSObject = {
   backgroundColor: 'white',
   margin: 0,
-  padding: '5px 20px',
+  padding: '4px 20px', // Keep it even for lost text calculation
   borderRadius: '32px',
   boxSizing: 'border-box', // clearer dimension calculations
-  border: border,
+  border,
   ':focus': {
     outline: border,
     outlineOffset: '2px',
@@ -21,7 +21,8 @@ const agentOverride: CSSObject = {
  * Pure
  */
 export const Button = styled.button(agentOverride, {
-  display: 'block',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   position: 'absolute',
-  lineHeight: 'initial',
 });

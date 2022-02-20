@@ -5,9 +5,11 @@ import styled from '@emotion/styled';
 import {breakPositionState} from '../state';
 import {ButtonText} from '../ButtonText';
 import {useGps} from '../GpsContext';
-import {BUTTON} from '../constants';
 
-const Text = styled(ButtonText)({
+const Container = styled.div({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   position: 'absolute',
 });
 
@@ -21,18 +23,13 @@ export const LostText: VFC = () => {
   // the fuck out of there
   useLayoutEffect(() => {
     if (position) {
-      const button = gps.get('button');
-      const text = gps.get('buttonText');
-
-      const widthDelta = (button.width - text.width) / 2;
-      // TODO: Figure out why Y needs delta but not X
-      const heightDelta =
-        (button.height - BUTTON.BORDER_SIZE - text.height) / 2;
+      const {width, height} = gps.get('button');
 
       setStyle({
         top: `${position.top}%`,
         left: `${position.left}%`,
-        transform: `translate(${widthDelta}px, ${heightDelta}px)`,
+        width,
+        height,
       });
     }
   }, [position, gps]);
@@ -41,5 +38,9 @@ export const LostText: VFC = () => {
     return null;
   }
 
-  return <Text aria-hidden style={style} />;
+  return (
+    <Container aria-hidden style={style}>
+      <ButtonText />
+    </Container>
+  );
 };
