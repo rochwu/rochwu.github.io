@@ -4,9 +4,10 @@ import {useRecoilValue} from 'recoil';
 import {attemptsState, isIncrementalGameState} from '../state';
 import {useGps} from '../GpsContext';
 import {randomIndex} from '../randomIndex';
+import {MILESTONES} from '../constants';
 
 import {Taunt, TauntProps} from './Taunt';
-import {insults, MAX_AGE} from './insults';
+import {insults} from './insults';
 
 export const Taunts: VFC = () => {
   const gps = useGps();
@@ -35,7 +36,7 @@ export const Taunts: VFC = () => {
       birthday: attempts,
     };
 
-    if (rest.length >= MAX_AGE) {
+    if (rest.length >= MILESTONES.MAX_TAUNT_AGE) {
       taunts.current = [...rest, newTaunt];
     } else if (!first) {
       taunts.current = [newTaunt];
