@@ -1,9 +1,9 @@
 import {useRecoilValue} from 'recoil';
 
-import {attemptsState, MILESTONES} from '../state';
+import {attemptsState} from '../state';
 import {isTouchDevice} from '../isTouchDevice';
-import {useRef} from 'react';
 import {randomIndex} from '../randomIndex';
+import {MILESTONES} from '../constants';
 
 const praiseScore = (attempts: number) => {
   switch (randomIndex(4)) {
@@ -26,8 +26,8 @@ export const useComment = () => {
     return `oops, won't work properly on a touch device, try a mouse!`;
   } else if (attempts > MILESTONES.INCREMENTAL_ON * 8) {
     return `remember you came here for a github link?`;
-  } else if (attempts > MILESTONES.INCREMENTAL_ON * 4) {
-    return `TODO: better dialogue, take a writing class`;
+  } else if (attempts > MILESTONES.MAX_TAUNT_AGE - 5) {
+    return `are you noticing that sick fade?`;
   } else if (attempts > MILESTONES.INCREMENTAL_ON + 1) {
     return praiseScore(attempts);
   } else if (attempts > MILESTONES.INCREMENTAL_ON) {

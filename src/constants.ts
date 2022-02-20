@@ -10,3 +10,9 @@ export const BADGE = {
 export const SIZE = {
   SCORE: '52px',
 };
+
+export const MILESTONES = {
+  BREAK: 2,
+  INCREMENTAL_ON: 5,
+  MAX_TAUNT_AGE: 28,
+};

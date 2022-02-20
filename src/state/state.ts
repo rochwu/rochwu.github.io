@@ -1,15 +1,12 @@
 import {CSSProperties} from 'react';
 import {atom, selector} from 'recoil';
 
+import {MILESTONES} from '../constants';
+
 export const attemptsState = atom({
   key: 'attemptsState',
   default: 0,
 });
-
-export const MILESTONES = {
-  BREAK: 2,
-  INCREMENTAL_ON: 5,
-};
 
 export const isButtonBroken = selector({
   key: 'isButtonBroken', // unique ID (with respect to other atoms/selectors)

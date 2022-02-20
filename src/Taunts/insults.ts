@@ -1,5 +1,3 @@
-export const MAX_AGE = 28;
-
 export const insults = [
   'lol!',
   'hahaha',

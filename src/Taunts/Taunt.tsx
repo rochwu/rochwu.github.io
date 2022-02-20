@@ -3,8 +3,7 @@ import styled from '@emotion/styled';
 import {animated, useSpring} from 'react-spring';
 
 import {Metadata} from '../types';
-
-import {MAX_AGE} from './insults';
+import {MILESTONES} from '../constants';
 
 const FONT_SIZE = '0.5em';
 
@@ -30,7 +29,7 @@ export const Taunt: VFC<TauntProps> = ({
   birthday,
   attempts,
 }) => {
-  const age = 100 - ((attempts - birthday) / MAX_AGE) * 100;
+  const age = 100 - ((attempts - birthday) / MILESTONES.MAX_TAUNT_AGE) * 100;
 
   const {explode, ...style} = useSpring({
     top: `${top}%`,
