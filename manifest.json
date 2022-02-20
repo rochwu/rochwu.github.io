@@ -1,0 +1,10 @@
+{
+  "name": "Rolando home page?",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48"
+    }
+  ],
+  "start_url": "."
+}
