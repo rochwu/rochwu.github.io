@@ -1,3 +1,3 @@
-import {IncrementalGame} from './IncrementalGame';
+import {BadgeScore} from './BadgeScore';
 
-export {IncrementalGame};
+export {BadgeScore};
