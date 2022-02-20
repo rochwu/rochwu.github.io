@@ -3,15 +3,15 @@ import styled from '@emotion/styled';
 import {useRecoilValue} from 'recoil';
 
 import {attemptsState, isIncrementalGameState} from '../state';
-import {BADGE, SIZE} from '../constants';
+import {BADGE} from '../constants';
 
 const FONT_SIZE = '1em';
 
 const Container = styled.div<{isVisible: boolean}>(
   ({isVisible}) => ({visibility: isVisible ? 'visible' : 'hidden'}),
   {
-    minHeight: SIZE.SCORE,
-    minWidth: SIZE.SCORE,
+    minHeight: BADGE.SIZE,
+    minWidth: BADGE.SIZE,
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',

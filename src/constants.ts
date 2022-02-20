@@ -5,10 +5,7 @@ export const BUTTON = {
 
 export const BADGE = {
   COLOR: '#D0342C',
-};
-
-export const SIZE = {
-  SCORE: '52px',
+  SIZE: '52px',
 };
 
 export const MILESTONES = {

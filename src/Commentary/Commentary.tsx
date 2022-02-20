@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import {SIZE} from '../constants';
+import {BADGE} from '../constants';
 import {useResponsiveLevel} from '../ResponsiveContext';
 import {ResponsiveLevel} from '../ResponsiveContext/Context';
 
@@ -12,7 +12,7 @@ const Container = styled.div<{responsiveLevel: ResponsiveLevel}>(
     }
 
     return {
-      marginRight: SIZE.SCORE,
+      marginRight: BADGE.SIZE,
     };
   },
   {

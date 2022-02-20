@@ -28,16 +28,16 @@ export const useComment = () => {
     return `remember you came here for a github link?`;
   } else if (attempts > MILESTONES.MAX_TAUNT_AGE - 5) {
     return `are you noticing that sick fade?`;
-  } else if (attempts > MILESTONES.INCREMENTAL_ON + 1) {
+  } else if (attempts > MILESTONES.INCREMENTAL_ON + 2) {
     return praiseScore(attempts);
   } else if (attempts > MILESTONES.INCREMENTAL_ON) {
     return `it's a game!`;
   } else if (attempts === MILESTONES.INCREMENTAL_ON) {
     return 'wait--';
   } else if (attempts > MILESTONES.BREAK + 1) {
-    return `oh dear...`;
+    return `...how did it...`;
   } else if (attempts > MILESTONES.BREAK) {
-    return 'hold on-- aiya...';
+    return '!? aiya...';
   } else if (attempts > 1) {
     return `and it's gone!`;
   } else if (attempts >= 1) {

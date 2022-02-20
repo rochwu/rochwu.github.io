@@ -7,7 +7,7 @@ const border = `${BUTTON.BORDER_SIZE}px groove ${BUTTON.COLOR}`;
 const agentOverride: CSSObject = {
   backgroundColor: 'white',
   margin: 0,
-  padding: '5px 16px',
+  padding: '5px 20px',
   borderRadius: '32px',
   boxSizing: 'border-box', // clearer dimension calculations
   border: border,
