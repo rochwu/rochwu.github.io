@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import {useRecoilValue} from 'recoil';
 
 import {attemptsState, isIncrementalGameState} from '../state';
-import {SIZE} from '../constants';
+import {BADGE, SIZE} from '../constants';
 
 const FONT_SIZE = '1em';
 
@@ -20,7 +20,7 @@ const Container = styled.div<{isVisible: boolean}>(
 );
 
 const Span = styled.span({
-  backgroundColor: '#D0342C',
+  backgroundColor: BADGE.COLOR,
   color: 'white',
   borderRadius: '13px',
   padding: '2px 8px',
@@ -33,7 +33,7 @@ const Score: VFC = () => {
   return <Span>{score}</Span>;
 };
 
-export const IncrementalGame: VFC = () => {
+export const BadgeScore: VFC = () => {
   const isOn = useRecoilValue(isIncrementalGameState);
 
   return (

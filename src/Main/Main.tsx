@@ -30,11 +30,12 @@ export const Main: VFC = () => {
     };
   }, [gps]);
 
+  // Everything here should be position absolute
   return (
     <Container ref={container}>
-      <DodgingButton />
-      <LostText />
       <Taunts />
+      <LostText />
+      <DodgingButton />
     </Container>
   );
 };
