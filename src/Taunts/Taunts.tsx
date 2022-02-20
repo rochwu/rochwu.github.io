@@ -5,19 +5,8 @@ import {attemptsState, isIncrementalGameState} from '../state';
 import {useGps} from '../GpsContext';
 import {randomIndex} from '../randomIndex';
 
-import {MAX_AGE, Taunt, TauntProps} from './Taunt';
-
-const insults = [
-  'lol!',
-  'hahaha',
-  'nope nope nope',
-  'close!',
-  `ha! got nothin'`,
-  'nice try',
-  'whew...',
-  'too fast',
-  'good attempt there, mate',
-];
+import {Taunt, TauntProps} from './Taunt';
+import {insults, MAX_AGE} from './insults';
 
 export const Taunts: VFC = () => {
   const gps = useGps();

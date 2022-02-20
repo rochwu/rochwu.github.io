@@ -15,6 +15,7 @@ const Container = styled.div<{isVisible: boolean}>(
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
+    userSelect: 'none',
   },
 );
 

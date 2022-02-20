@@ -1,4 +1,5 @@
 import {createContext, FC, useContext} from 'react';
+
 import {Metadata} from '../types';
 
 type Id = 'main' | 'button' | 'buttonText';

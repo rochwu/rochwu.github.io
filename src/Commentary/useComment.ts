@@ -21,27 +21,23 @@ const praiseScore = (attempts: number) => {
 
 export const useComment = () => {
   const attempts = useRecoilValue(attemptsState);
-  const onBreak = useRef(0);
 
   if (isTouchDevice()) {
-    return `whoops don't think it'd work on a touch device`;
+    return `oops, won't work properly on a touch device, try a mouse!`;
   } else if (attempts > MILESTONES.INCREMENTAL_ON * 8) {
     return `remember you came here for a github link?`;
   } else if (attempts > MILESTONES.INCREMENTAL_ON * 4) {
     return `TODO: better dialogue, take a writing class`;
-  } else if (attempts > MILESTONES.INCREMENTAL_ON * 2) {
+  } else if (attempts > MILESTONES.INCREMENTAL_ON + 1) {
     return praiseScore(attempts);
   } else if (attempts > MILESTONES.INCREMENTAL_ON) {
     return `it's a game!`;
   } else if (attempts === MILESTONES.INCREMENTAL_ON) {
     return 'wait--';
+  } else if (attempts > MILESTONES.BREAK + 1) {
+    return `oh dear...`;
   } else if (attempts > MILESTONES.BREAK) {
-    onBreak.current += 1;
-    if (onBreak.current === 1) {
-      return 'hold on-- aiya...';
-    } else {
-      return `oh dear..${'.'.repeat(onBreak.current)}`;
-    }
+    return 'hold on-- aiya...';
   } else if (attempts > 1) {
     return `and it's gone!`;
   } else if (attempts >= 1) {

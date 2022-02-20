@@ -1,36 +1,18 @@
-import styled, {CSSObject} from '@emotion/styled';
 import {CSSProperties, MouseEventHandler, useState, VFC} from 'react';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 
 import {useGps} from '../GpsContext';
 import {attemptsState, breakPositionState, isButtonBreaking} from '../state';
-
 import {newPosition} from '../newPosition';
+
 import {useButtonRef} from './useButtonRef';
 import {initialStyle} from './initialStyle';
 import {HidableText} from './HidableText';
-import {BUTTON} from '../constants';
+import {Button} from './Button';
 
-const border = `${BUTTON.BORDER_SIZE}px groove ${BUTTON.COLOR}`;
-
-const agentOverride: CSSObject = {
-  backgroundColor: 'white',
-  margin: 0,
-  padding: '5px 16px',
-  borderRadius: '32px',
-  boxSizing: 'border-box', // clearer dimension calculations
-  border: border,
-  ':focus': {
-    outline: border,
-    outlineOffset: '2px',
-  },
+const goToGithub = () => {
+  window.location.href = 'https://github.com/rochwu';
 };
-
-const Button = styled.button(agentOverride, {
-  display: 'block',
-  position: 'absolute',
-  lineHeight: 'initial',
-});
 
 export const DodgingButton: VFC = () => {
   const gps = useGps();
@@ -42,11 +24,6 @@ export const DodgingButton: VFC = () => {
   const setBreakPosition = useSetRecoilState(breakPositionState);
 
   const dodge: MouseEventHandler = () => {
-    const params = new URLSearchParams(document.location.search);
-    if (params.get('stop') === '') {
-      return;
-    }
-
     if (isBreaking) {
       const position = gps.get('button');
       setBreakPosition({top: position.top, left: position.left});
@@ -56,19 +33,17 @@ export const DodgingButton: VFC = () => {
 
     gps.set('button', {top, left});
 
+    // TODO: Maybe transition
     setStyle({display: 'none'});
     setTimeout(() => {
       setStyle({top: `${top}%`, left: `${left}%`});
     }, 500);
 
+    // This has to be here to create the break away effect
+    // or else it'll flash back to life and look wonk
     setAttempts((previous) => previous + 1);
   };
 
-  const goToGithub = () => {
-    window.location.href = 'https://github.com/rochwu';
-  };
-
-  // Inline style for performance!
   return (
     <Button
       ref={ref}
