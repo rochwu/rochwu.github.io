@@ -24,7 +24,7 @@ export const useComment = () => {
   const onBreak = useRef(0);
 
   if (isTouchDevice()) {
-    return `whoops don't think it'd work on a touch device`;
+    return `oops, won't work properly on a touch device, try a mouse!`;
   } else if (attempts > MILESTONES.INCREMENTAL_ON * 8) {
     return `remember you came here for a github link?`;
   } else if (attempts > MILESTONES.INCREMENTAL_ON * 4) {

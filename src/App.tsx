@@ -9,8 +9,10 @@ import {Main} from './Main';
 const Container = styled.div({
   display: 'flex',
   flexDirection: 'column',
-  width: '100vw',
+  backgroundColor: 'white',
+  maxWidth: '1024px', // Arbitrary, iPad
   height: '100vh',
+  margin: 'auto',
 });
 
 export default function App() {
