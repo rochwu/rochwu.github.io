@@ -37,7 +37,7 @@ export const DodgingButton: VFC = () => {
     setStyle({display: 'none'});
     setTimeout(() => {
       setStyle({top: `${top}%`, left: `${left}%`});
-    }, 500);
+    }, 333);
 
     // This has to be here to create the break away effect
     // or else it'll flash back to life and look wonk
