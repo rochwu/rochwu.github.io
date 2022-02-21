@@ -5,11 +5,12 @@ import {GpsProvider} from './GpsContext';
 import {ResponsiveProvider} from './ResponsiveContext';
 import {Header} from './Header';
 import {Main} from './Main';
+import {APP} from './constants';
 
 const Container = styled.div({
   display: 'flex',
   flexDirection: 'column',
-  backgroundColor: 'white',
+  backgroundColor: APP.BACK_COLOR,
   maxWidth: '1024px', // Arbitrary, iPad
   height: '100vh',
   margin: 'auto',

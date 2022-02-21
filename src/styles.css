@@ -1,5 +1,9 @@
 body {
   margin: 0;
   font-family: 'Be Vietnam Pro', sans-serif;
-  background-color: #fdfdfd;
+  background-color: #100c08;
+}
+
+html {
+  background-color: #100c08;
 }

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
-import {BADGE} from '../constants';
+
+import {BADGE, TEXT} from '../constants';
 import {useResponsiveLevel} from '../ResponsiveContext';
 import {ResponsiveLevel} from '../ResponsiveContext/Context';
 
@@ -26,6 +27,7 @@ const Container = styled.div<{responsiveLevel: ResponsiveLevel}>(
 const Comment = styled.span({
   fontSize: '1.5em',
   fontWeight: 'bold',
+  color: TEXT.COLOR,
 });
 
 export const Commentary = () => {

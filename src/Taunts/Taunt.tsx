@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import {animated, useSpring} from 'react-spring';
 
 import {Metadata} from '../types';
-import {MILESTONES} from '../constants';
+import {MILESTONES, TEXT} from '../constants';
 
 const FONT_SIZE = '0.5em';
 
@@ -11,6 +11,7 @@ const Container = styled(animated.span)({
   position: 'absolute',
   userSelect: 'none',
   fontSize: FONT_SIZE,
+  color: TEXT.COLOR,
 });
 
 export type TauntProps = Pick<Metadata, 'top' | 'left'> & {

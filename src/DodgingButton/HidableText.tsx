@@ -7,7 +7,7 @@ import {ButtonText} from '../ButtonText';
 import {useGps} from '../GpsContext';
 
 const Text = styled(ButtonText)<{isVisible: boolean}>(({isVisible}) => {
-  return {opacity: isVisible ? '100%' : '3%'};
+  return {visibility: isVisible ? 'visible' : 'hidden'};
 });
 
 export const HidableText: VFC = () => {
