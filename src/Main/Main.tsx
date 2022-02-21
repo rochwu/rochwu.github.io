@@ -34,8 +34,8 @@ export const Main: VFC = () => {
   return (
     <Container ref={container}>
       <Taunts />
-      <DodgingButton />
       <LostText />
+      <DodgingButton />
     </Container>
   );
 };

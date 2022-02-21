@@ -20,8 +20,8 @@ const Container = styled.div<{isVisible: boolean}>(
 );
 
 const Span = styled.span({
-  backgroundColor: BADGE.COLOR,
-  color: 'white',
+  backgroundColor: BADGE.BACK_COLOR,
+  color: BADGE.COLOR,
   borderRadius: '13px',
   padding: '2px 8px',
   fontSize: FONT_SIZE,

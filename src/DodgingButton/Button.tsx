@@ -5,7 +5,7 @@ import {BUTTON} from '../constants';
 const border = `${BUTTON.BORDER_SIZE}px groove ${BUTTON.COLOR}`;
 
 const agentOverride: CSSObject = {
-  backgroundColor: 'white',
+  backgroundColor: 'transparent',
   margin: 0,
   padding: '4px 20px', // Keep it even for lost text calculation
   borderRadius: '32px',
