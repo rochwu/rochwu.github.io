@@ -37,9 +37,12 @@ const PositionedButton: FC = ({children}) => {
 
     // TODO: Maybe transition
     setStyle({display: 'none'});
-    schedule(() => {
-      setStyle({top: `${top}%`, left: `${left}%`});
-    });
+    schedule(
+      () => {
+        setStyle({top: `${top}%`, left: `${left}%`});
+      },
+      {override: true},
+    );
 
     // At the end to prevent a flash when the button goes away
     setAttempts((previous) => previous + 1);

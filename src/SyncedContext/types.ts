@@ -1,6 +1,12 @@
 export type SyncedCallback = () => void;
 
-export type Schedule = (syncedCallback: () => void) => void;
+type ScheduleOptions = {
+  override?: boolean;
+};
+export type Schedule = (
+  syncedCallback: () => void,
+  options?: ScheduleOptions,
+) => void;
 
 export type Synced = {
   callbacks: SyncedCallback[];
