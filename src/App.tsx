@@ -1,8 +1,10 @@
+import {VFC} from 'react';
 import styled from '@emotion/styled';
 import {RecoilRoot} from 'recoil';
 
 import {GpsProvider} from './GpsContext';
 import {ResponsiveProvider} from './ResponsiveContext';
+import {SyncedProvider} from './SyncedContext';
 import {Header} from './Header';
 import {Main} from './Main';
 import {APP} from './constants';
@@ -16,15 +18,23 @@ const Container = styled.div({
   margin: 'auto',
 });
 
-export default function App() {
+const App: VFC = () => {
+  return (
+    <Container>
+      <Header />
+      <Main />
+    </Container>
+  );
+};
+
+export default function () {
   return (
     <RecoilRoot>
       <GpsProvider>
         <ResponsiveProvider>
-          <Container>
-            <Header />
-            <Main />
-          </Container>
+          <SyncedProvider>
+            <App />
+          </SyncedProvider>
         </ResponsiveProvider>
       </GpsProvider>
     </RecoilRoot>

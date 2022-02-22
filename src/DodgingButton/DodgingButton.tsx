@@ -1,7 +1,8 @@
-import {CSSProperties, MouseEventHandler, useState, VFC} from 'react';
+import {CSSProperties, FC, MouseEventHandler, useState, VFC} from 'react';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 
 import {useGps} from '../GpsContext';
+import {useSynced} from '../SyncedContext';
 import {attemptsState, breakPositionState, isButtonBreaking} from '../state';
 import {newPosition} from '../newPosition';
 
@@ -14,10 +15,11 @@ const goToGithub = () => {
   window.location.href = 'https://github.com/rochwu';
 };
 
-export const DodgingButton: VFC = () => {
+const PositionedButton: FC = ({children}) => {
   const gps = useGps();
   const ref = useButtonRef();
   const [style, setStyle] = useState<CSSProperties>(initialStyle);
+  const schedule = useSynced();
 
   const isBreaking = useRecoilValue(isButtonBreaking);
   const setAttempts = useSetRecoilState(attemptsState);
@@ -35,12 +37,11 @@ export const DodgingButton: VFC = () => {
 
     // TODO: Maybe transition
     setStyle({display: 'none'});
-    setTimeout(() => {
+    schedule(() => {
       setStyle({top: `${top}%`, left: `${left}%`});
-    }, 333);
+    });
 
-    // This has to be here to create the break away effect
-    // or else it'll flash back to life and look wonk
+    // At the end to prevent a flash when the button goes away
     setAttempts((previous) => previous + 1);
   };
 
@@ -52,7 +53,16 @@ export const DodgingButton: VFC = () => {
       onClick={goToGithub}
       aria-label="Link to my github at github.com/rochwu"
     >
-      <HidableText />
+      {children}
     </Button>
+  );
+};
+
+export const DodgingButton: VFC = () => {
+  // PositionedButton renders a lot, we use children to minimize HidableText renders
+  return (
+    <PositionedButton>
+      <HidableText />
+    </PositionedButton>
   );
 };

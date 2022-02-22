@@ -1,11 +1,4 @@
-import {
-  createContext,
-  FC,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import {createContext, FC, useContext, useEffect, useState} from 'react';
 
 export enum ResponsiveLevel {
   Large = 'large',
@@ -27,7 +20,7 @@ const getLevel = (width: number): ResponsiveLevel => {
   return ResponsiveLevel.Large;
 };
 
-export const ResponsiveProvider: FC = (props) => {
+export const ResponsiveProvider: FC = ({children}) => {
   const [responsiveness, setResponsiveness] = useState(() =>
     getLevel(document.body.clientWidth),
   );
@@ -43,9 +36,6 @@ export const ResponsiveProvider: FC = (props) => {
       observer.disconnect();
     };
   }, []);
-
-  // eslint-disable-next-line
-  const children = useMemo(() => props.children, []);
 
   return <Provider value={responsiveness}>{children}</Provider>;
 };
