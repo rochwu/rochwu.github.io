@@ -14,9 +14,14 @@ export const SyncedProvider: FC = ({children}) => {
     let handle: ReturnType<typeof setInterval>; // setInterval in different browsers can be number or string
     let isScheduled = false;
 
-    context.subscribe = (callback) => {
-      if (!isScheduled) {
+    context.subscribe = (callback, options) => {
+      context.callbacks.push(callback);
+
+      if (options?.override) {
         clearInterval(handle);
+      }
+
+      if (!isScheduled) {
         isScheduled = true;
 
         handle = setInterval(() => {
@@ -25,8 +30,6 @@ export const SyncedProvider: FC = ({children}) => {
           isScheduled = false;
         }, 333);
       }
-
-      context.callbacks.push(callback);
     };
 
     // eslint-disable-next-line
