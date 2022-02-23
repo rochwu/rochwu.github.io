@@ -1,5 +1,4 @@
 import {useRecoilValue} from 'recoil';
-import {useEffect, useRef, useState} from 'react';
 
 import {attemptsState} from '../state';
 import {isTouchDevice} from '../isTouchDevice';
