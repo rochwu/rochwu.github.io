@@ -1,8 +1,8 @@
 import {createContext, FC, useContext, useEffect, useState} from 'react';
 
 export enum ResponsiveLevel {
-  Large = 'large',
   Small = 'small',
+  Large = 'large',
 }
 
 const Context = createContext(ResponsiveLevel.Large);
@@ -27,6 +27,7 @@ export const ResponsiveProvider: FC = ({children}) => {
 
   useEffect(() => {
     const observer = new ResizeObserver(() => {
+      // Minimizes rerenders by returning an enum instead
       setResponsiveness(getLevel(document.body.clientWidth));
     });
 

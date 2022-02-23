@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
 
 import {BADGE, TEXT} from '../constants';
-import {useResponsiveLevel} from '../ResponsiveContext';
-import {ResponsiveLevel} from '../ResponsiveContext/Context';
+import {useResponsiveLevel, ResponsiveLevel} from '../ResponsiveContext';
 
 import {useComment} from './useComment';
 

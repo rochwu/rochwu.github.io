@@ -38,12 +38,14 @@ export const Taunts: VFC = () => {
         const [first, ...rest] = previous;
         const {top, left} = gps.get('button');
         const insult = insults[randomIndex(insults.length)];
+
         const newTaunt = {
           top,
           left,
           insult,
           birthday: attempts,
         };
+
         if (rest.length >= MILESTONES.MAX_TAUNT_AGE) {
           return [...rest, newTaunt];
         } else if (!first) {

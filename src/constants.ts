@@ -10,7 +10,7 @@ export const APP = {
 };
 
 export const BUTTON = {
-  COLOR: `#b76e79`,
+  COLOR: `#B76E79`,
   // FILL_COLOR: '',
   BORDER_SIZE: 2,
 };

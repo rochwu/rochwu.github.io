@@ -4,4 +4,4 @@ import {
   ResponsiveLevel,
 } from './Context';
 
-export {ResponsiveProvider, useResponsiveLevel};
+export {ResponsiveProvider, useResponsiveLevel, ResponsiveLevel};
