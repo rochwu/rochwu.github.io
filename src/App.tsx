@@ -49,7 +49,7 @@ const App: VFC = () => {
 const Loader: VFC = () => {
   const [ready, setReady] = useState(false);
   const [title, setTitle] = useState('unnecessary fancy welcoming screen');
-  const interval = useRef<ReturnType<typeof setTimeout>>();
+  const interval = useRef<number>();
 
   const [style] = useSpring(() => ({
     from: {opacity: '100%'},
@@ -64,7 +64,7 @@ const Loader: VFC = () => {
     console.log(`oh we're checking console now`);
 
     // TODO: Would love to do log who actually needed help here
-    interval.current = setTimeout(() => {
+    interval.current = window.setTimeout(() => {
       setTitle('press any key to continue');
     }, 12345);
 
