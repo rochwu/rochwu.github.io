@@ -49,7 +49,7 @@ const App: VFC = () => {
 const Loader: VFC = () => {
   const [ready, setReady] = useState(false);
   const [title, setTitle] = useState('unnecessary fancy welcoming screen');
-  const interval = useRef(0);
+  const interval = useRef<ReturnType<typeof setTimeout>>();
 
   const [style] = useSpring(() => ({
     from: {opacity: '100%'},
