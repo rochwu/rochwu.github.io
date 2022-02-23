@@ -1,52 +1,21 @@
 import {useLayoutEffect, useRef, useState, VFC} from 'react';
-import styled, {CSSObject} from '@emotion/styled';
-import {RecoilRoot} from 'recoil';
+import styled from '@emotion/styled';
 import {useSpring, animated} from 'react-spring';
 
-import {GpsProvider} from './GpsContext';
-import {ResponsiveProvider} from './ResponsiveContext';
-import {SyncedProvider} from './SyncedContext';
-import {Header} from './Header';
-import {Main} from './Main';
-import {APP, TEXT} from './constants';
+import {Content} from './Content';
+import {TEXT} from '../constants';
 
-const screen: CSSObject = {
-  height: '100vh',
-};
-
-const Container = styled(animated.div)(screen, {
-  display: 'flex',
-  flexDirection: 'column',
-  backgroundColor: APP.BACK_COLOR,
-  margin: 'auto',
-  maxWidth: '1024px', // Arbitrary, iPad
-});
-
-const Fades = styled(animated.div)(screen, {
+const Container = styled(animated.div)({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   color: TEXT.COLOR,
   textTransform: 'uppercase',
   fontSize: '1em',
+  height: '100%',
 });
 
-const App: VFC = () => {
-  const [style] = useSpring(() => ({
-    from: {opacity: '0'},
-    opacity: '100%',
-    config: {duration: 333},
-  }));
-
-  return (
-    <Container style={style}>
-      <Header />
-      <Main />
-    </Container>
-  );
-};
-
-const Loader: VFC = () => {
+export const Loader: VFC = () => {
   const [ready, setReady] = useState(false);
   const [title, setTitle] = useState('unnecessary fancy welcoming screen');
   const interval = useRef<number>();
@@ -90,31 +59,17 @@ const Loader: VFC = () => {
   }, []);
 
   if (ready) {
-    return <App />;
+    return <Content />;
   }
 
   clearInterval(interval.current);
 
   return (
-    <Fades
+    <Container
       style={style}
       aria-label="unnecessary fancy welcoming screen, press any key to continue"
     >
       {title}
-    </Fades>
+    </Container>
   );
 };
-
-export default function () {
-  return (
-    <RecoilRoot>
-      <GpsProvider>
-        <ResponsiveProvider>
-          <SyncedProvider>
-            <Loader />
-          </SyncedProvider>
-        </ResponsiveProvider>
-      </GpsProvider>
-    </RecoilRoot>
-  );
-}
