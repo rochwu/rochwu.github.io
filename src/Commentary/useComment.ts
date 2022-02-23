@@ -67,17 +67,7 @@ const praiseScore = (attempts: number) => {
 };
 
 export const useComment = () => {
-  const [greet, setGreet] = useState('sup');
   const attempts = useRecoilValue(attemptsState);
-  const current = useRef(attempts);
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (current.current === 0) {
-        setGreet('check out the horrible stuff I built down below');
-      }
-    }, 666);
-  }, []);
 
   if (isTouchDevice()) {
     return `oops, won't work properly with touch, try a mouse!`;
@@ -98,8 +88,8 @@ export const useComment = () => {
   } else if (attempts > 1) {
     return `oi where is it going!`;
   } else if (attempts >= 1) {
-    return 'check out the horrible stuff I built...?';
+    return 'see the horrible stuff I built...?';
   }
 
-  return greet;
+  return 'come see the horrible stuff I built down below';
 };
