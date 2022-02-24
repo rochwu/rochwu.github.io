@@ -22,7 +22,7 @@ const Container = styled(animated.div)({
 export const Loader: VFC = () => {
   const isReady = useIsReady();
   const [title, setTitle] = useState('unnecessary fancy welcoming screen');
-  const interval = useRef<number>();
+  const interval = useRef<ReturnType<typeof window.setTimeout>>();
 
   const [style] = useSpring(() => ({
     from: {opacity: '100%'},

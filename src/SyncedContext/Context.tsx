@@ -11,7 +11,7 @@ export const SyncedProvider: FC = ({children}) => {
   const context = useContext(Context);
 
   useLayoutEffect(() => {
-    let handle: ReturnType<typeof setInterval>; // setInterval in different browsers can be number or string
+    let handle: ReturnType<typeof window.setTimeout>; // window cuz typescript gets confused with node's
     let isScheduled = false;
 
     context.subscribe = (callback, options) => {
@@ -24,7 +24,7 @@ export const SyncedProvider: FC = ({children}) => {
       if (!isScheduled) {
         isScheduled = true;
 
-        handle = setInterval(() => {
+        handle = window.setTimeout(() => {
           context.callbacks.forEach((callback) => callback());
           context.callbacks = [];
           isScheduled = false;

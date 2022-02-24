@@ -37,7 +37,8 @@ export const Taunts: VFC = () => {
       setTaunts((previous) => {
         const [first, ...rest] = previous;
         const {top, left} = gps.get('button');
-        const insult = insults[randomIndex(insults.length)];
+        const index = randomIndex(insults.length);
+        const insult = insults[index];
 
         const newTaunt = {
           top,
