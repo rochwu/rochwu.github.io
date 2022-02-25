@@ -14,7 +14,6 @@ export const Taunts: VFC = () => {
   const gps = useGps();
   const schedule = useSynced();
 
-  // const [taunts, setTaunts] = useState<Omit<TauntProps, 'attempts'>[]>([]);
   const [taunts, setTaunts] = useRecoilState(tauntsState);
 
   const attempts = useRecoilValue(attemptsState);
