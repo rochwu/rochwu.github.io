@@ -22,7 +22,7 @@ const Container = styled(animated.div)({
 export const Loader: VFC = () => {
   const isReady = useIsReady();
   const [title, setTitle] = useState('unnecessary fancy welcoming screen');
-  const interval = useRef<ReturnType<typeof window.setTimeout>>();
+  const handle = useRef<ReturnType<typeof window.setTimeout>>();
 
   const [style] = useSpring(() => ({
     from: {opacity: '100%'},
@@ -37,17 +37,17 @@ export const Loader: VFC = () => {
     console.log(`oh we're checking console now`);
 
     // TODO: Would love to do log who actually needed help here
-    interval.current = window.setTimeout(() => {
+    handle.current = window.setTimeout(() => {
       setTitle('press any key to continue');
     }, 12345);
 
     return () => {
-      clearInterval(interval.current);
+      clearInterval(handle.current);
     };
   }, []);
 
   if (isReady) {
-    clearInterval(interval.current);
+    clearInterval(handle.current);
     return <Content />;
   }
 
