@@ -16,7 +16,6 @@ const Span = styled.span(agentOverride, {
   fontSize: FONT_SIZE,
   textAlign: 'center',
   fontFamily: 'sans-serif',
-  userSelect: 'none',
 });
 
 const Icon = styled(IoLogoGithub)({

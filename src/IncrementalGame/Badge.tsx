@@ -14,7 +14,6 @@ const Container = styled.div<ContainerProps>(
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    userSelect: 'none',
   },
 );
 

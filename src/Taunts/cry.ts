@@ -1,6 +1,7 @@
 import {randomIndex} from '../randomIndex';
 
-const cries = [`oh no`, `why...`, `goodbye`, `fine`, `*sobs*`, `ow`];
+// TODO: Make it more whimsical, like fairies!
+const cries = [`nou`, `hmph`, `fine`, `owie`, `sigh`, `hey!`];
 
 export const cry = () => {
   return cries[randomIndex(cries.length)];

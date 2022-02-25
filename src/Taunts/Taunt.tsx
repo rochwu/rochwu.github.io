@@ -15,11 +15,9 @@ export type TauntProps = TauntState & {today: number};
 
 const Container = styled(animated.span)({
   position: 'absolute',
-  userSelect: 'none',
   fontSize: FONT_SIZE,
   color: TEXT.COLOR,
   padding: '0.5em',
-  cursor: 'pointer',
 });
 
 const range = [0, 0.1, 1];
@@ -35,7 +33,7 @@ export const Taunt: VFC<TauntProps> = ({
   const lifespan = today - birthday;
   const age = 100 - (lifespan / MILESTONES.MAX_TAUNT_AGE) * 100;
 
-  const shouldFade = useRef(true);
+  const isUnmounting = useRef(false);
 
   const setTaunts = useSetRecoilState(tauntsState);
   const setStarsFelled = useSetRecoilState(starsFelledState);
@@ -46,15 +44,16 @@ export const Taunt: VFC<TauntProps> = ({
     from: {
       explode: 0,
       opacity: `${age}%`,
+      cursor: 'pointer',
+      translate: '1em, -2.25em',
     },
     explode: 1,
-    transform: `translate(1em, -2.25em)`, // needed here or scale will override it
     config: {
       duration: 300,
     },
   }));
 
-  if (shouldFade.current) {
+  if (!isUnmounting.current) {
     api.start({
       opacity: `${age}%`,
     });
@@ -74,17 +73,15 @@ export const Taunt: VFC<TauntProps> = ({
       });
     };
 
-    const setup = () => {
-      shouldFade.current = false;
-      setMessage(cry());
-      setStarsFelled((previous) => previous + 1);
-    };
+    setMessage(cry());
+    isUnmounting.current = true;
+    setStarsFelled((previous) => previous + 1);
 
     api.start({
+      cursor: 'default',
       explode: 0,
       opacity: `0%`,
       onRest: unmount,
-      onStart: setup,
       config: {duration: 1000},
     });
   };
@@ -96,7 +93,7 @@ export const Taunt: VFC<TauntProps> = ({
 
   return (
     <Container
-      onClick={handleClick}
+      onClick={!isUnmounting.current ? handleClick : undefined}
       style={{
         ...style,
         ...staticStyle,

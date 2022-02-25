@@ -23,7 +23,7 @@ const readScript = (index: number | undefined) => {
     case 4:
       return 'do they vanish or are we moving further away';
     default:
-      return `doesn't it look like a starry night`;
+      return `sorta looks like a starry night huh`;
   }
 };
 
@@ -76,9 +76,9 @@ export const useComment = () => {
   } else if (attempts > MILESTONES.INCREMENTAL_ON * 7) {
     return philosophize();
   } else if (attempts > MILESTONES.MAX_TAUNT_AGE) {
-    return `have you notice the fading?`;
+    return `have you noticed the fading?`;
   } else if (haveFalledStars) {
-    return `oh no, you'll scare them away`;
+    return `oh no, they're all leaving now`;
   } else if (attempts > MILESTONES.INCREMENTAL_ON + 3) {
     return praiseScore(attempts);
   } else if (attempts > MILESTONES.INCREMENTAL_ON) {
