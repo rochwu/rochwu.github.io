@@ -1,19 +1,21 @@
-import {useEffect, useMemo, useState, VFC} from 'react';
-import {useRecoilValue} from 'recoil';
+import {useEffect, useMemo, VFC} from 'react';
+import {useRecoilState, useRecoilValue} from 'recoil';
 
-import {attemptsState, isIncrementalGameState} from '../state';
+import {attemptsState, isIncrementalGameState, tauntsState} from '../state';
 import {useGps} from '../GpsContext';
 import {useSynced} from '../SyncedContext';
 import {randomIndex} from '../randomIndex';
 import {MILESTONES} from '../constants';
 
-import {Taunt, TauntProps} from './Taunt';
+import {Taunt} from './Taunt';
 import {insults} from './insults';
 
 export const Taunts: VFC = () => {
   const gps = useGps();
   const schedule = useSynced();
-  const [taunts, setTaunts] = useState<Omit<TauntProps, 'attempts'>[]>([]);
+
+  // const [taunts, setTaunts] = useState<Omit<TauntProps, 'attempts'>[]>([]);
+  const [taunts, setTaunts] = useRecoilState(tauntsState);
 
   const attempts = useRecoilValue(attemptsState);
   const isIncrementalGame = useRecoilValue(isIncrementalGameState);
@@ -47,7 +49,8 @@ export const Taunts: VFC = () => {
           birthday: attempts,
         };
 
-        if (rest.length >= MILESTONES.MAX_TAUNT_AGE) {
+        // -1 for first because 28 has to be enforced!
+        if (rest.length >= MILESTONES.MAX_TAUNT_AGE - 1) {
           return [...rest, newTaunt];
         } else if (!first) {
           return [newTaunt];
@@ -56,7 +59,6 @@ export const Taunts: VFC = () => {
         }
       });
     });
-
     // eslint-disable-next-line
   }, [attempts]);
 

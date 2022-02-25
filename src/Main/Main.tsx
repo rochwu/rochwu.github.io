@@ -33,8 +33,8 @@ export const Main: VFC = () => {
   // Everything here should be position absolute
   return (
     <Container ref={container}>
-      <Taunts />
       <LostText />
+      <Taunts />
       <DodgingButton />
     </Container>
   );

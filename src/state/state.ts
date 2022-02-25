@@ -3,9 +3,26 @@ import {atom, selector} from 'recoil';
 
 import {MILESTONES} from '../constants';
 
+import {TauntState} from '../types';
+
 export const attemptsState = atom({
   key: 'attemptsState',
   default: 0,
+});
+
+export const starsFelledState = atom({
+  key: 'starsFelledState',
+  default: 0,
+});
+
+export const tauntsState = atom<TauntState[]>({
+  key: 'tauntsState',
+  default: [],
+});
+
+export const breakPositionState = atom<CSSProperties | undefined>({
+  key: 'breakPositionState',
+  default: undefined,
 });
 
 export const isButtonBroken = selector({
@@ -25,11 +42,6 @@ export const isButtonBreaking = selector({
 
     return attempts === MILESTONES.BREAK;
   },
-});
-
-export const breakPositionState = atom<CSSProperties | undefined>({
-  key: 'breakPositionState',
-  default: undefined,
 });
 
 export const isIncrementalGameState = selector({
