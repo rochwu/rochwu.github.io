@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import {FC} from 'react';
+import {animated, useTransition} from 'react-spring';
 
 import {BADGE} from '../constants';
 
@@ -22,7 +23,7 @@ type SpanProps = {
   color: string;
 };
 
-const Span = styled.span<SpanProps>(
+const Span = styled(animated.span)<SpanProps>(
   ({backgroundColor, color}) => ({backgroundColor, color}),
   {
     padding: '2px 8px',
@@ -34,9 +35,22 @@ const Span = styled.span<SpanProps>(
 export type BadgeProps = ContainerProps & SpanProps;
 
 export const Badge: FC<BadgeProps> = ({children, isVisible, ...props}) => {
+  // TODO: incorporate gaming flash mount
+  const transitions = useTransition(isVisible, {
+    from: {opacity: 0},
+    enter: {opacity: 1},
+  });
+
   return (
     <Container isVisible={isVisible}>
-      <Span {...props}>{children}</Span>
+      {transitions(
+        (style, item) =>
+          item && (
+            <Span style={style} {...props}>
+              {children}
+            </Span>
+          ),
+      )}
     </Container>
   );
 };
