@@ -11,7 +11,7 @@ export const SyncedProvider: FC = ({children}) => {
   const context = useContext(Context);
 
   useLayoutEffect(() => {
-    let handle: ReturnType<typeof window.setTimeout>; // window cuz typescript gets confused with node's
+    let handle: number;
     let isScheduled = false;
 
     context.subscribe = (callback, options) => {
