@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.d30d0ee1.css","mappings":"AAAA,KAGE,wBAAyB,CADzB,6CAAkD,CADlD,QAAS,CAGT,wBAAiB,CAAjB,gBACF","sources":["styles.css"],"sourcesContent":["body {\n  margin: 0;\n  font-family: 'Be Vietnam Pro', Verdana, sans-serif;\n  background-color: #100c08;\n  user-select: none;\n}\n"],"names":[],"sourceRoot":""}
