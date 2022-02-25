@@ -1,4 +1,4 @@
-import {useContext} from 'react';
+import {useCallback, useContext} from 'react';
 
 import {Context} from './Context';
 import {Schedule} from './types';
@@ -9,7 +9,12 @@ import {Schedule} from './types';
 export const useSynced = (): Schedule => {
   const context = useContext(Context);
 
-  return (syncedCallback) => {
-    context.subscribe(syncedCallback);
-  };
+  const schedule = useCallback(
+    (syncedCallback) => {
+      context.subscribe(syncedCallback);
+    },
+    [context],
+  );
+
+  return schedule;
 };
