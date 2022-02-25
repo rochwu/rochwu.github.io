@@ -11,7 +11,7 @@ import {useGps} from '../GpsContext';
 import {useSynced} from '../SyncedContext';
 import {MILESTONES} from '../constants';
 
-import {Taunt} from './Taunt';
+import {Taunt} from '../Taunt';
 import {insult} from './insult';
 
 const TauntsMap: VFC = () => {
@@ -38,11 +38,11 @@ const TauntsMap: VFC = () => {
     schedule(() => {
       setTaunts((previous) => {
         const [first, ...rest] = previous;
-        const {top, left} = gps.get('button');
+        const {top, left} = gps.get('button'); // Button always has top and left
 
         const newTaunt = {
-          top,
-          left,
+          top: top!,
+          left: left!,
           insult: insult(),
           birthday: today,
         };

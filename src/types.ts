@@ -5,7 +5,7 @@ export type Metadata = {
   left?: number;
 };
 
-export type TauntState = Pick<Metadata, 'top' | 'left'> & {
+export type TauntState = Required<Pick<Metadata, 'top' | 'left'>> & {
   insult: string;
   birthday: number; // Acts as an id, unique
 };

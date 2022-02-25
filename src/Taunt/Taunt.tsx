@@ -3,19 +3,16 @@ import styled from '@emotion/styled';
 import {animated, useSpring} from 'react-spring';
 import {useSetRecoilState} from 'recoil';
 
-import {TauntState} from '../types';
 import {MILESTONES, TEXT} from '../constants';
 import {starsFelledState, tauntsState} from '../state';
 
 import {cry} from './cry';
+import {TauntProps} from './types';
+import {Position} from './Position';
 
-const FONT_SIZE = '0.5em';
-
-export type TauntProps = TauntState & {today: number};
-
-const Container = styled(animated.span)({
+const Animation = styled(animated.span)({
   position: 'absolute',
-  fontSize: FONT_SIZE,
+  fontSize: '0.5em',
   color: TEXT.COLOR,
   padding: '0.5em',
 });
@@ -23,12 +20,10 @@ const Container = styled(animated.span)({
 const range = [0, 0.1, 1];
 const output = [1, 1.5, 1];
 
-export const Taunt: VFC<TauntProps> = ({
-  top,
-  left,
-  insult,
-  birthday,
+const AnimatedTaunt: VFC<Omit<TauntProps, 'top' | 'left'>> = ({
   today,
+  birthday,
+  insult,
 }) => {
   const lifespan = today - birthday;
   const age = 100 - (lifespan / MILESTONES.MAX_TAUNT_AGE) * 100;
@@ -86,21 +81,23 @@ export const Taunt: VFC<TauntProps> = ({
     });
   };
 
-  const staticStyle = {
-    top: `${top}%`,
-    left: `${left}%`,
-  };
-
   return (
-    <Container
+    <Animation
       onClick={!isUnmounting.current ? handleClick : undefined}
       style={{
         ...style,
-        ...staticStyle,
         scale: explode.to(range, output),
       }}
     >
       {message}
-    </Container>
+    </Animation>
+  );
+};
+
+export const Taunt: VFC<TauntProps> = ({top, left, ...props}) => {
+  return (
+    <Position top={top} left={left}>
+      <AnimatedTaunt {...props} />
+    </Position>
   );
 };

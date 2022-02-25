@@ -22,7 +22,6 @@ const Icon = styled(IoLogoGithub)({
   marginRight: '8px',
 });
 
-// Pure
 export const ButtonText = forwardRef<
   HTMLSpanElement,
   HTMLAttributes<HTMLSpanElement>
