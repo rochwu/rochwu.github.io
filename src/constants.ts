@@ -6,7 +6,7 @@ export const MILESTONES = {
 
 // Styles
 export const APP = {
-  BACK_COLOR: '#111111',
+  BACK_COLOR: '#0E1011',
 };
 
 export const BUTTON = {

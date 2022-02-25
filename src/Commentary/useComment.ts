@@ -1,6 +1,6 @@
 import {useRecoilValue} from 'recoil';
 
-import {attemptsState} from '../state';
+import {attemptsState, starsFelledState} from '../state';
 import {isTouchDevice} from '../isTouchDevice';
 import {randomIndex} from '../randomIndex';
 import {MILESTONES} from '../constants';
@@ -8,7 +8,7 @@ import {mutateOrder} from '../mutateOrder';
 
 const WONDER_CASES = 5;
 
-const readScript = (index: number | undefined, attempts: number) => {
+const readScript = (index: number | undefined) => {
   switch (index) {
     case 0:
       return `they say star are gases, I say words`;
@@ -17,22 +17,22 @@ const readScript = (index: number | undefined, attempts: number) => {
     case 2:
       return `ever wonder what stars made of text would look like?`;
     case 3:
-      return `look at what ${attempts} tries gotten us...`;
+      return `have you touched stars? they tend to flee`;
     case 4:
       return 'do they vanish or are we moving further away';
     default:
-      return 'sorta looks like the night skies huh';
+      return `doesn't it look like a starry night`;
   }
 };
 
 const philosophize = (() => {
   let repeats = 0;
 
-  let index = WONDER_CASES; // Out of bound causes undefined
+  let index = WONDER_CASES; // Out of bound causes undefined aka default
   const indices = Array.from(Array(WONDER_CASES).keys()); // 0 to WONDER_CASES
   mutateOrder(indices);
 
-  return (attempts: number) => {
+  return () => {
     if (repeats > 5) {
       repeats = 0;
       index += 1;
@@ -45,7 +45,7 @@ const philosophize = (() => {
 
     repeats += 1;
 
-    return readScript(indices[index], attempts);
+    return readScript(indices[index]);
   };
 })();
 
@@ -67,13 +67,16 @@ const praiseScore = (attempts: number) => {
 
 export const useComment = () => {
   const attempts = useRecoilValue(attemptsState);
+  const haveFalledStars = useRecoilValue(starsFelledState) > 0;
 
   if (isTouchDevice()) {
     return `oops, won't work properly with touch, try a mouse!`;
   } else if (attempts > MILESTONES.INCREMENTAL_ON * 7) {
-    return philosophize(attempts);
+    return philosophize();
   } else if (attempts > MILESTONES.MAX_TAUNT_AGE) {
-    return `did you notice the fading?`;
+    return `have you notice the fading?`;
+  } else if (haveFalledStars) {
+    return `oh no, you'll scare them away`;
   } else if (attempts > MILESTONES.INCREMENTAL_ON + 3) {
     return praiseScore(attempts);
   } else if (attempts > MILESTONES.INCREMENTAL_ON) {

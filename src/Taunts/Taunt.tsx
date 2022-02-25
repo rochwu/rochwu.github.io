@@ -11,7 +11,7 @@ import {cry} from './cry';
 
 const FONT_SIZE = '0.5em';
 
-export type TauntProps = TauntState & {attempts: number};
+export type TauntProps = TauntState & {today: number};
 
 const Container = styled(animated.span)({
   position: 'absolute',
@@ -30,9 +30,9 @@ export const Taunt: VFC<TauntProps> = ({
   left,
   insult,
   birthday,
-  attempts,
+  today,
 }) => {
-  const lifespan = attempts - birthday;
+  const lifespan = today - birthday;
   const age = 100 - (lifespan / MILESTONES.MAX_TAUNT_AGE) * 100;
 
   const shouldFade = useRef(true);

@@ -6,12 +6,12 @@ import {APP} from '../constants';
 
 import {Badge} from './Badge';
 
-export const BadgeStarfalls: VFC = () => {
+export const BadgeFelledStars: VFC = () => {
   const score = useRecoilValue(starsFelledState);
 
   return (
     <Badge
-      backgroundColor={`#2FCBD3`}
+      backgroundColor={`#A57EA4`}
       color={APP.BACK_COLOR}
       isVisible={score > 0}
     >

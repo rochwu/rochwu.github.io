@@ -1,4 +1,4 @@
 import {BadgeScore} from './BadgeScore';
-import {BadgeStarfalls} from './BadgeStarfalls';
+import {BadgeFelledStars} from './BadgeFelledStars';
 
-export {BadgeScore, BadgeStarfalls};
+export {BadgeScore, BadgeFelledStars};
