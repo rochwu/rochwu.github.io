@@ -3,14 +3,17 @@ import styled, {CSSObject} from '@emotion/styled';
 
 type Props = Pick<CSSObject, 'height'>;
 
-const Container = styled.div<Props>(({height}) => ({
-  height,
-}));
+const Container = styled.div<Props>(
+  ({height}) => ({
+    height,
+  }),
+  {width: '100%', position: 'relative'},
+);
 
 /**
  * Mobile friendlily defines height
  */
-export const DefineHeight: FC = ({children}) => {
+export const DefineViewport: FC = ({children}) => {
   const [height, setHeight] = useState<Props['height']>('100vh');
   const ref = useRef<HTMLDivElement>(null);
 

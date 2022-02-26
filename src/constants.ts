@@ -10,6 +10,10 @@ export const APP = {
   WIDTH: 1024, // Arbitrary, iPad
 };
 
+export const BODY = {
+  BACK_COLOR: '#100c08', // TODO: Sync with styles.css
+};
+
 export const BUTTON = {
   COLOR: `#B76E79`,
   // FILL_COLOR: '',
