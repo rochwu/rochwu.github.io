@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import {useEffect, useRef, VFC} from 'react';
+import {useLayoutEffect, useRef, VFC} from 'react';
 
 import {DodgingButton} from '../DodgingButton';
 import {useGps} from '../GpsContext';
@@ -16,12 +16,16 @@ export const Main: VFC = () => {
   const container = useRef<HTMLDivElement>(null);
   const gps = useGps();
 
-  useEffect(() => {
-    const observer = new ResizeObserver(() => {
+  useLayoutEffect(() => {
+    const updateWidth = () => {
       const {width, height} = container.current!.getBoundingClientRect();
 
       gps.set('main', {width, height});
-    });
+    };
+
+    updateWidth();
+
+    const observer = new ResizeObserver(updateWidth);
 
     observer.observe(container.current!);
 

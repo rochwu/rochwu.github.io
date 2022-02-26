@@ -34,7 +34,11 @@ export const Loader: VFC = () => {
 
   useEffect(() => {
     // Not a debug console, just to talk to people using console you know
-    console.log(`oh we're checking console now`);
+    console.log(
+      `oh? you are here, mhm, there %care`,
+      `font-style: italic; font-weight: bold`,
+      `ways to reach that button`,
+    );
 
     // TODO: Would love to do log who actually needed help here
     handle.current = window.setTimeout(() => {
