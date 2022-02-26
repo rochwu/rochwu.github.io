@@ -5,10 +5,16 @@ import {useSpring, animated} from 'react-spring';
 import {TEXT} from '../constants';
 
 import {Content} from './Content';
+import {Curtains} from './Curtains';
 import {useIsReady} from './useIsReady';
 import {Note} from './Note';
 
 const Container = styled(animated.div)({
+  position: 'relative',
+  height: '100%',
+});
+
+const WelcomeMessage = styled(animated.div)({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -21,16 +27,26 @@ const Container = styled(animated.div)({
 // TODO: Maybe add visibility change to remount this when inactive
 export const Loader: VFC = () => {
   const isReady = useIsReady();
+
+  const [showContent, setShowContent] = useState(false);
   const [title, setTitle] = useState('unnecessary fancy welcoming screen');
   const handle = useRef<number>();
 
-  const [style] = useSpring(() => ({
+  const [welcomeMessageStyle] = useSpring(() => ({
     from: {opacity: '100%'},
     opacity: '0',
     loop: {reverse: true},
     config: {duration: 690},
     cancel: isReady,
   }));
+
+  const style = useSpring({
+    from: {opacity: '100%'},
+    opacity: '0',
+    onRest: () => setShowContent(true),
+    config: {duration: 420},
+    cancel: !isReady,
+  });
 
   useEffect(() => {
     // Not a debug console, just to talk to people using console you know
@@ -50,20 +66,24 @@ export const Loader: VFC = () => {
     };
   }, []);
 
-  if (isReady) {
+  if (showContent) {
     clearInterval(handle.current);
-    return <Content />;
+    return (
+      <Curtains>
+        <Content />
+      </Curtains>
+    );
   }
 
   return (
-    <>
+    <Container style={style}>
       <Note />
-      <Container
-        style={style}
+      <WelcomeMessage
+        style={welcomeMessageStyle}
         aria-label="unnecessary fancy welcoming screen, press any key to continue"
       >
         {title}
-      </Container>
-    </>
+      </WelcomeMessage>
+    </Container>
   );
 };

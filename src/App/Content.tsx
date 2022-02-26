@@ -1,30 +1,22 @@
 import {VFC} from 'react';
 import styled from '@emotion/styled';
 
-import {useSpring, animated} from 'react-spring';
-
 import {Header} from '../Header';
 import {Main} from '../Main';
 import {APP} from '../constants';
 
-const Container = styled(animated.div)({
+const Container = styled.div({
   display: 'flex',
   flexDirection: 'column',
   backgroundColor: APP.BACK_COLOR,
   margin: 'auto',
-  maxWidth: '1024px', // Arbitrary, iPad
+  maxWidth: `${APP.WIDTH}px`,
   height: '100%',
 });
 
 export const Content: VFC = () => {
-  const [style] = useSpring(() => ({
-    from: {opacity: '0'},
-    opacity: '100%',
-    config: {duration: 333},
-  }));
-
   return (
-    <Container style={style}>
+    <Container>
       <Header />
       <Main />
     </Container>

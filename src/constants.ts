@@ -7,6 +7,7 @@ export const MILESTONES = {
 // Styles
 export const APP = {
   BACK_COLOR: '#0E1011',
+  WIDTH: 1024, // Arbitrary, iPad
 };
 
 export const BUTTON = {
