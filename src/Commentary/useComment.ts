@@ -72,13 +72,13 @@ export const useComment = () => {
   const haveFalledStars = useRecoilValue(starsFelledState) > 0;
 
   if (isTouchDevice()) {
-    return `oops, won't work properly with touch, try a mouse!`;
+    return `oops, won't work with touch, try a mouse!`;
   } else if (attempts > MILESTONES.INCREMENTAL_ON * 7) {
     return philosophize();
   } else if (attempts > MILESTONES.MAX_TAUNT_AGE) {
     return `have you noticed the fading?`;
   } else if (haveFalledStars) {
-    return `oh no, they're all leaving now`;
+    return `oh no, they be leaving now`;
   } else if (attempts > MILESTONES.INCREMENTAL_ON + 3) {
     return praiseScore(attempts);
   } else if (attempts > MILESTONES.INCREMENTAL_ON) {

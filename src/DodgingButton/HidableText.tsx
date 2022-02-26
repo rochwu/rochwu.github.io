@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import {useEffect, useRef, VFC} from 'react';
+import {useLayoutEffect, useRef, VFC} from 'react';
 import {useRecoilValue} from 'recoil';
 
 import {isButtonBroken} from '../state';
@@ -15,7 +15,7 @@ export const HidableText: VFC = () => {
   const ref = useRef<HTMLSpanElement>(null);
   const gps = useGps();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const text = ref.current;
 
     if (text) {

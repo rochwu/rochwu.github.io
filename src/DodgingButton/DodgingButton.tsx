@@ -1,4 +1,4 @@
-import {CSSProperties, FC, MouseEventHandler, useState, VFC} from 'react';
+import {CSSProperties, FC, useState, VFC} from 'react';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 
 import {useGps} from '../GpsContext';
@@ -18,14 +18,15 @@ const goToGithub = () => {
 const PositionedButton: FC = ({children}) => {
   const gps = useGps();
   const ref = useButtonRef();
-  const [style, setStyle] = useState<CSSProperties>(initialStyle);
   const schedule = useSynced();
+
+  const [style, setStyle] = useState<CSSProperties>(initialStyle);
 
   const isBreaking = useRecoilValue(isButtonBreaking);
   const setAttempts = useSetRecoilState(attemptsState);
   const setBreakPosition = useSetRecoilState(breakPositionState);
 
-  const dodge: MouseEventHandler = () => {
+  const dodge = () => {
     if (isBreaking) {
       const position = gps.get('button');
       setBreakPosition({top: position.top, left: position.left});
