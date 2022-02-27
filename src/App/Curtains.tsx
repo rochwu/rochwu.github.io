@@ -2,7 +2,7 @@ import {VFC, useState} from 'react';
 import styled, {CSSObject} from '@emotion/styled';
 import {animated, easings, useSpring} from 'react-spring';
 
-import {APP, BODY} from '../constants';
+import {APP, BODY, TEXT} from '../constants';
 
 const curtainStyle: CSSObject = {
   top: '0',
@@ -17,8 +17,15 @@ const Left = styled(animated.div)(curtainStyle, {
 });
 
 const Right = styled(animated.div)(curtainStyle, {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'end',
   right: '0',
+  writingMode: 'vertical-rl',
+  textTransform: 'uppercase',
 });
+
+const curtainMessage = 'pointless aspect ratio transition';
 
 const halfWidth = APP.WIDTH / 2;
 
@@ -26,7 +33,6 @@ export const Curtains: VFC<{shouldShow: boolean}> = ({shouldShow}) => {
   const [shouldRender, setShouldRender] = useState(true);
 
   const common = {
-    from: {translateX: '0'},
     onRest: () => setShouldRender(false),
     config: {
       duration: 5000,
@@ -38,12 +44,15 @@ export const Curtains: VFC<{shouldShow: boolean}> = ({shouldShow}) => {
 
   const leftStyle = useSpring({
     ...common,
+    from: {translateX: '0'},
     translateX: `-${halfWidth}px`,
   });
 
   const rightStyle = useSpring({
     ...common,
+    from: {translateX: '0', color: TEXT.COLOR},
     translateX: `${halfWidth}px`,
+    color: BODY.BACK_COLOR,
   });
 
   if (!shouldRender) {
@@ -53,7 +62,9 @@ export const Curtains: VFC<{shouldShow: boolean}> = ({shouldShow}) => {
   return (
     <>
       <Left style={leftStyle} />
-      <Right style={rightStyle} />
+      <Right aria-hidden style={rightStyle}>
+        {!shouldShow ? curtainMessage : ''}
+      </Right>
     </>
   );
 };

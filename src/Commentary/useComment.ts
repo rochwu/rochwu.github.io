@@ -78,7 +78,7 @@ export const useComment = () => {
   } else if (attempts > MILESTONES.MAX_TAUNT_AGE) {
     return `have you noticed the fading?`;
   } else if (haveFalledStars) {
-    return `oh no, they be leaving now`;
+    return `oh no, what have you done`;
   } else if (attempts > MILESTONES.INCREMENTAL_ON + 3) {
     return praiseScore(attempts);
   } else if (attempts > MILESTONES.INCREMENTAL_ON) {
