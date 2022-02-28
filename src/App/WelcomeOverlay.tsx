@@ -47,7 +47,7 @@ export const WelcomeOverlay: VFC<{shouldShow: boolean}> = ({shouldShow}) => {
   useEffect(() => {
     // TODO: Would love to do log who actually needed help here
     handle.current = window.setTimeout(() => {
-      setTitle('press any key to continue');
+      setTitle('just press any key to continue');
     }, 12345);
 
     return () => {
