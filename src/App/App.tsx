@@ -10,12 +10,8 @@ import {DefineViewport} from './DefineViewport';
 
 export const App: VFC = () => {
   useEffect(() => {
-    // Not a debug console, just to talk to people using console you know
-    console.log(
-      `oh? you are here, mhm, there %care`,
-      `font-style: italic; font-weight: bold`,
-      `ways to reach that button`,
-    );
+    // Not a debug console, just to let console people I know wussup
+    console.log(`oh? you are here, mhm, there are ways to reach that button`);
   }, []);
 
   return (

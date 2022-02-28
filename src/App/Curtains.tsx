@@ -19,7 +19,7 @@ const Left = styled(animated.div)(curtainStyle, {
 const Right = styled(animated.div)(curtainStyle, {
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'end',
+  alignItems: 'flex-end',
   right: '0',
   writingMode: 'vertical-rl',
   textTransform: 'uppercase',

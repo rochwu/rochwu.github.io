@@ -90,10 +90,10 @@ export const useComment = () => {
   } else if (attempts > MILESTONES.BREAK) {
     return '!? aiya...';
   } else if (attempts > 1) {
-    return `oi where is it going!`;
+    return `oi where is it going?`;
   } else if (attempts >= 1) {
     return 'see the horrible stuff I built...?';
   }
 
-  return 'come see the horrible stuff I built down below';
+  return 'see other horrible stuff I built down below';
 };
