@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import {animated, useSpring} from 'react-spring';
 import {useSetRecoilState} from 'recoil';
 
-import {MILESTONES, TEXT} from '../constants';
+import {MILESTONES} from '../constants';
 import {starsFelledState, tauntsState} from '../state';
 
 import {cry} from './cry';
@@ -13,7 +13,6 @@ import {Position} from './Position';
 const Animation = styled(animated.span)({
   position: 'absolute',
   fontSize: '0.5em',
-  color: TEXT.COLOR,
   padding: '0.5em',
 });
 

@@ -1,7 +1,6 @@
 import {useRecoilValue} from 'recoil';
 
 import {attemptsState, starsFelledState} from '../state';
-import {isTouchDevice} from '../isTouchDevice';
 import {randomIndex} from '../randomIndex';
 import {MILESTONES} from '../constants';
 import {mutateOrder} from '../mutateOrder';
@@ -71,9 +70,7 @@ export const useComment = () => {
   const attempts = useRecoilValue(attemptsState);
   const haveFalledStars = useRecoilValue(starsFelledState) > 0;
 
-  if (isTouchDevice()) {
-    return `oops, won't work with touch, try a mouse!`;
-  } else if (attempts > MILESTONES.INCREMENTAL_ON * 7) {
+  if (attempts > MILESTONES.INCREMENTAL_ON * 7) {
     return philosophize();
   } else if (attempts > MILESTONES.MAX_TAUNT_AGE) {
     return `have you noticed the fading?`;
