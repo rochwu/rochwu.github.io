@@ -4,6 +4,7 @@ import {Content} from './Content';
 import {Curtains} from './Curtains';
 import {useIsReady} from './useIsReady';
 import {WelcomeOverlay} from './WelcomeOverlay';
+import {TouchDisclaimer} from './TouchDisclaimer';
 
 // TODO: Maybe add visibility change to remount this when inactive
 export const Loader: VFC = () => {
@@ -14,6 +15,7 @@ export const Loader: VFC = () => {
       <Content />
       <Curtains shouldShow={!isReady} />
       <WelcomeOverlay shouldShow={!isReady} />
+      <TouchDisclaimer />
     </>
   );
 };

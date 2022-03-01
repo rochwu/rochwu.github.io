@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import {useRef, useState, VFC} from 'react';
+import {useState, VFC} from 'react';
 import {animated, useSpring} from 'react-spring';
 
 import {APP} from '../constants';
@@ -20,8 +20,7 @@ const Container = styled(animated.div)({
 });
 
 export const TouchDisclaimer: VFC = () => {
-  const [shouldRender, setShouldRender] = useState(() => !isTouchDevice());
-  const ref = useRef<HTMLDivElement>(null);
+  const [shouldRender, setShouldRender] = useState(() => isTouchDevice());
 
   const [style, api] = useSpring(() => ({
     from: {
@@ -33,16 +32,16 @@ export const TouchDisclaimer: VFC = () => {
     onRest: () => setShouldRender(false),
   }));
 
-  const close = () => {
-    api.start({opacity: 0});
-  };
-
   if (!shouldRender) {
     return null;
   }
 
+  const close = () => {
+    api.start({opacity: 0});
+  };
+
   return (
-    <Container ref={ref} style={style} aria-hidden onClick={close}>
+    <Container aria-hidden style={style} onClick={close}>
       whoops won't work right on a touch screen, try a mouse! touch this banner
       to dismiss
     </Container>

@@ -6,7 +6,9 @@ export const useIsReady = () => {
   // We wanna make super sure the listeners are mounted before the user starts playing with us
   useLayoutEffect(() => {
     const wake = () => {
-      setIsReady(true);
+      window.setTimeout(() => {
+        setIsReady(true);
+      }, 333);
 
       // eslint-disable-next-line
       removeListeners();

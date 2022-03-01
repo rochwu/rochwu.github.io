@@ -1,7 +1,5 @@
 import styled from '@emotion/styled';
 
-import {TEXT} from '../constants';
-
 import {useComment} from './useComment';
 
 const Container = styled.div({
@@ -14,7 +12,6 @@ const Container = styled.div({
 const Comment = styled.span({
   fontSize: '1.5em',
   fontWeight: 'bold',
-  color: TEXT.COLOR,
 });
 
 export const Commentary = () => {
