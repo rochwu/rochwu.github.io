@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import {CSSProperties, FC} from 'react';
+import {FC} from 'react';
 import {animated, useTransition} from 'react-spring';
 
 import {BADGE} from '../constants';

@@ -5,6 +5,7 @@ import {DodgingButton} from '../DodgingButton';
 import {useGps} from '../GpsContext';
 import {LostText} from '../LostText';
 import {Taunts} from '../Taunts';
+import {Unlocks} from '../Unlocks';
 
 const Container = styled.div({
   position: 'relative',
@@ -40,6 +41,7 @@ export const Main: VFC = () => {
       <LostText />
       <Taunts />
       <DodgingButton />
+      <Unlocks />
     </Container>
   );
 };

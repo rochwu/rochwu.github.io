@@ -7,11 +7,11 @@ const Container = styled.div<Props>(
   ({height}) => ({
     height,
   }),
-  {width: '100%', position: 'relative'},
+  {width: '100%', position: 'relative', overflow: 'hidden'},
 );
 
 /**
- * Mobile friendlily defines height
+ * Mobile friendlily, defines height
  */
 export const DefineViewport: FC = ({children}) => {
   const [height, setHeight] = useState<Props['height']>('100vh');
