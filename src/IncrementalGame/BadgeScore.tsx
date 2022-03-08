@@ -1,4 +1,4 @@
-import {useLayoutEffect, VFC} from 'react';
+import {useEffect, VFC} from 'react';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 
 import {attemptsState, isIncrementalGameState, setUnlockState} from '../state';
@@ -11,12 +11,11 @@ export const BadgeScore: VFC = () => {
   const score = useRecoilValue(attemptsState);
   const unlock = useSetRecoilState(setUnlockState);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (isVisible) {
       unlock('incremental');
     }
-    // eslint-disable-next-line
-  }, [isVisible]);
+  }, [isVisible, unlock]);
 
   return (
     <Badge

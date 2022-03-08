@@ -1,4 +1,4 @@
-import {useLayoutEffect, VFC} from 'react';
+import {useEffect, VFC} from 'react';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 
 import {setUnlockState, starsFelledState} from '../state';
@@ -12,12 +12,11 @@ export const BadgeFelledStars: VFC = () => {
 
   const isVisible = score > 0;
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (isVisible) {
       unlock('starFall');
     }
-    // eslint-disable-next-line
-  }, [isVisible]);
+  }, [isVisible, unlock]);
 
   return (
     <Badge

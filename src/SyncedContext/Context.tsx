@@ -31,9 +31,7 @@ export const SyncedProvider: FC = ({children}) => {
         }, 333);
       }
     };
-
-    // eslint-disable-next-line
-  }, []);
+  }, [context]);
 
   return <Provider value={context}>{children}</Provider>;
 };

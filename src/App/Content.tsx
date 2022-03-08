@@ -1,7 +1,6 @@
 import {VFC} from 'react';
 import styled from '@emotion/styled';
 
-import {System} from '../System';
 import {Header} from '../Header';
 import {Main} from '../Main';
 import {APP, TEXT} from '../constants';
@@ -18,12 +17,9 @@ const Container = styled.div({
 
 export const Content: VFC = () => {
   return (
-    <>
-      <Container>
-        <Header />
-        <Main />
-      </Container>
-      <System />
-    </>
+    <Container>
+      <Header />
+      <Main />
+    </Container>
   );
 };

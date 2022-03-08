@@ -1,4 +1,5 @@
-import {atom, DefaultValue, selector} from 'recoil';
+import {useCallback} from 'react';
+import {atom, DefaultValue, selector, useSetRecoilState} from 'recoil';
 
 const KEY = 'unlocks' as const;
 
@@ -10,7 +11,7 @@ type Unlocks = {
   buttonBreak: boolean;
 };
 
-const initialValue: Unlocks = {
+const defaultValue: Unlocks = {
   keyboardFocus: false,
   mouseOver: false,
   incremental: false,
@@ -18,13 +19,13 @@ const initialValue: Unlocks = {
   buttonBreak: false,
 };
 
-export const UNLOCKS_MAX = Object.keys(initialValue).length;
+export const UNLOCKS_MAX = Object.keys(defaultValue).length;
 
 const storage = {
   get: (): Unlocks => {
     const item = window.localStorage.getItem(KEY);
 
-    let unlocks = initialValue;
+    let unlocks = defaultValue;
     if (item) {
       try {
         unlocks = JSON.parse(item);
@@ -78,11 +79,11 @@ export const setUnlockState = selector<keyof Unlocks>({
   },
 });
 
-export const clearUnlocksState = selector<boolean>({
-  key: 'clearUnlocksState',
-  get: () => undefined as never,
-  set: ({set}) => {
-    set(unlocksState, initialValue);
+export const useClearUnlocks = () => {
+  const set = useSetRecoilState(unlocksState);
+
+  return useCallback(() => {
+    set(defaultValue);
     storage.clear();
-  },
-});
+  }, [set]);
+};

@@ -24,14 +24,12 @@ const TauntsMap: VFC = () => {
 
   const today = attempts + starsFelled;
 
-  // We ignore `attempts` to render `taunts` in sync
-  // Else we'd render the `taunts` twice, one without the addition, one with
   const elements = useMemo(() => {
     return taunts.map((props) => (
       <Taunt key={props.birthday} {...props} today={today} />
     ));
-
-    // eslint-disable-next-line
+    // We ignore `today` to render `taunts` in sync
+    // Else we'd render the `taunts` twice, one before the addition
   }, [taunts]);
 
   useEffect(() => {
