@@ -1,9 +1,21 @@
-import {CSSProperties, FC, useState, VFC} from 'react';
+import {
+  CSSProperties,
+  FC,
+  MouseEventHandler,
+  useRef,
+  useState,
+  VFC,
+} from 'react';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 
 import {useGps} from '../GpsContext';
 import {useSynced} from '../SyncedContext';
-import {attemptsState, breakPositionState, isButtonBreaking} from '../state';
+import {
+  attemptsState,
+  breakPositionState,
+  isButtonBreaking,
+  setUnlockState,
+} from '../state';
 import {newPosition} from '../newPosition';
 
 import {useButtonRef} from './useButtonRef';
@@ -21,12 +33,18 @@ const PositionedButton: FC = ({children}) => {
   const schedule = useSynced();
 
   const [style, setStyle] = useState<CSSProperties>(initialStyle);
+  const hasEntered = useRef(false);
+  const hasOvered = useRef(false);
+  const hasFocused = useRef(false);
 
   const isBreaking = useRecoilValue(isButtonBreaking);
   const setAttempts = useSetRecoilState(attemptsState);
   const setBreakPosition = useSetRecoilState(breakPositionState);
+  const unlock = useSetRecoilState(setUnlockState);
 
-  const dodge = () => {
+  const dodge: MouseEventHandler = () => {
+    hasEntered.current = true;
+
     if (isBreaking) {
       const position = gps.get('button');
       setBreakPosition({top: position.top, left: position.left});
@@ -36,7 +54,6 @@ const PositionedButton: FC = ({children}) => {
 
     gps.set('button', {top, left});
 
-    // TODO: Maybe transition
     setStyle({display: 'none'});
     schedule(
       () => {
@@ -49,13 +66,44 @@ const PositionedButton: FC = ({children}) => {
     setAttempts((previous) => previous + 1);
   };
 
+  const overHandlers = hasOvered.current
+    ? undefined
+    : {
+        onMouseLeave: () => {
+          hasEntered.current = false;
+        },
+        onMouseOver: () => {
+          // Without rerender the functions are in closure, we check over
+          if (hasEntered.current || hasOvered.current) {
+            return;
+          }
+
+          hasOvered.current = true;
+
+          unlock('mouseOver');
+        },
+      };
+
+  const onFocus = hasFocused.current
+    ? undefined
+    : () => {
+        if (hasFocused.current) {
+          return;
+        }
+
+        hasFocused.current = true;
+        unlock('keyboardFocus');
+      };
+
   return (
     <Button
+      aria-label="Link to my github at github.com/rochwu"
       ref={ref}
       style={style}
-      onMouseEnter={dodge}
       onClick={goToGithub}
-      aria-label="Link to my github at github.com/rochwu"
+      onFocus={onFocus}
+      onMouseEnter={dodge}
+      {...overHandlers}
     >
       {children}
     </Button>

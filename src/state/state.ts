@@ -10,6 +10,11 @@ export const attemptsState = atom({
   default: 0,
 });
 
+export const breakPositionState = atom<CSSProperties | undefined>({
+  key: 'breakPositionState',
+  default: undefined,
+});
+
 export const starsFelledState = atom({
   key: 'starsFelledState',
   default: 0,
@@ -18,11 +23,6 @@ export const starsFelledState = atom({
 export const tauntsState = atom<TauntState[]>({
   key: 'tauntsState',
   default: [],
-});
-
-export const breakPositionState = atom<CSSProperties | undefined>({
-  key: 'breakPositionState',
-  default: undefined,
 });
 
 export const isButtonBroken = selector({
