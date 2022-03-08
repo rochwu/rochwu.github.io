@@ -1,4 +1,4 @@
-import {CSSProperties, useEffect, useState, VFC} from 'react';
+import {CSSProperties, useLayoutEffect, useState, VFC} from 'react';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 import styled from '@emotion/styled';
 
@@ -22,7 +22,7 @@ export const LostText: VFC = () => {
 
   // We don't wanna flicker since the button will display:none
   // the fuck out of there
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (position) {
       unlock('buttonBreak');
 
