@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import {useState, VFC} from 'react';
+import {useEffect, useState, VFC} from 'react';
 import {animated, useSpring} from 'react-spring';
 import {useRecoilValue} from 'recoil';
 
@@ -43,8 +43,10 @@ const flipStyle = (flipped: boolean) => {
 
 export const Unlocks: VFC = () => {
   const count = useRecoilValue(getUnlocksState);
+  const hasUnlocks = count > 0;
 
   const [flipped, setFlipped] = useState(false);
+  const [clearText, setClearText] = useState('clear?');
 
   const clearUnlocks = useClearUnlocks();
 
@@ -55,6 +57,11 @@ export const Unlocks: VFC = () => {
     from: {opacity: 0},
     opacity: 1,
   }));
+
+  useEffect(() => {
+    setClearText(hasUnlocks ? 'clear?' : 'later?');
+    // Change only on flip to hide transition while hovered
+  }, [flipped]);
 
   const flip = () => {
     setFlipped((previous) => !previous);
@@ -75,7 +82,7 @@ export const Unlocks: VFC = () => {
       onMouseLeave={flip}
     >
       <Count style={countStyle}>{`${count}/${UNLOCKS_MAX}`}</Count>
-      <Clear style={clearStyle}>clear?</Clear>
+      <Clear style={clearStyle}>{clearText}</Clear>
     </Container>
   );
 };
