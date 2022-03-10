@@ -7,7 +7,7 @@ const commonTheme = {
   button: BUTTON.COLOR,
 };
 
-export const nightTheme = {
+const nightTheme = {
   ...commonTheme,
   text: TEXT.COLOR,
   app: APP.BACK_COLOR,
@@ -15,7 +15,7 @@ export const nightTheme = {
 
 export type Theme = typeof nightTheme;
 
-export const dayTheme: Theme = {
+const dayTheme: Theme = {
   ...commonTheme,
   text: APP.BACK_COLOR,
   app: TEXT.COLOR,

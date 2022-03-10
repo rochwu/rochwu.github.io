@@ -13,7 +13,6 @@ import {Position} from './Position';
 const Animation = styled(animated.div)({
   fontSize: '0.5em',
   padding: '0.5em',
-  width: '100%',
 });
 
 const range = [0, 0.1, 1];
