@@ -5,7 +5,7 @@ import {TauntProps} from './types';
 
 const Container = styled.div({
   position: 'absolute',
-  width: '100%',
+  transform: 'translate(0.5em, -1em)',
 });
 
 export const Position: FC<Pick<TauntProps, 'top' | 'left'>> = ({
