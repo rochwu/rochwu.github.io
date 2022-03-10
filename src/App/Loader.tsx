@@ -1,6 +1,7 @@
 import {VFC} from 'react';
 
-import {Content} from './Content';
+import {Content} from '../Content';
+
 import {Curtains} from './Curtains';
 import {useIsReady} from './useIsReady';
 import {WelcomeOverlay} from './WelcomeOverlay';

@@ -7,6 +7,7 @@ import {SyncedProvider} from '../SyncedContext';
 
 import {Loader} from './Loader';
 import {DefineViewport} from './DefineViewport';
+import {NightProvider} from '../StyledContext';
 
 export const App: VFC = () => {
   useEffect(() => {
@@ -19,9 +20,11 @@ export const App: VFC = () => {
       <GpsProvider>
         <ResponsiveProvider>
           <SyncedProvider>
-            <DefineViewport>
-              <Loader />
-            </DefineViewport>
+            <NightProvider>
+              <DefineViewport>
+                <Loader />
+              </DefineViewport>
+            </NightProvider>
           </SyncedProvider>
         </ResponsiveProvider>
       </GpsProvider>

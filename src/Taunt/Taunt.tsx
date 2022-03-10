@@ -10,8 +10,7 @@ import {cry} from './cry';
 import {TauntProps} from './types';
 import {Position} from './Position';
 
-const Animation = styled(animated.span)({
-  position: 'absolute',
+const Animation = styled(animated.div)({
   fontSize: '0.5em',
   padding: '0.5em',
 });
@@ -39,7 +38,6 @@ const AnimatedTaunt: VFC<Omit<TauntProps, 'top' | 'left'>> = ({
       explode: 0,
       opacity: `${age}%`,
       cursor: 'pointer',
-      translate: '1em, -2.25em',
     },
     explode: 1,
     config: {

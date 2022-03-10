@@ -56,7 +56,6 @@ const TauntsMap: VFC = () => {
       });
     });
     // Only button chasing attempts make new taunts
-    // eslint-disable-next-line
   }, [attempts]);
 
   return <>{elements}</>;

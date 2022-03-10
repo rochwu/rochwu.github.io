@@ -8,19 +8,24 @@ const agentOverride: CSSObject = {
   padding: '4px 20px', // Keep it even for lost text calculation
   borderRadius: '32px',
   boxSizing: 'border-box', // clearer dimension calculations
-  border: `${BUTTON.BORDER_SIZE}px outset ${BUTTON.COLOR}`,
-  ':focus': {
-    outline: `3px double ${BUTTON.COLOR}`,
-    outlineOffset: '1px',
-  },
 };
 
 /**
  * Pure
  */
-export const Button = styled.button(agentOverride, {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  position: 'absolute',
-});
+export const Button = styled.button(
+  agentOverride,
+  {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+  },
+  ({theme}) => ({
+    border: `${BUTTON.BORDER_SIZE}px outset ${theme.button}`,
+    ':focus': {
+      outline: `3px double ${theme.button}`,
+      outlineOffset: '1px',
+    },
+  }),
+);
