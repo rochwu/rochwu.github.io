@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
+import {useRecoilValue} from 'recoil';
 
-import {useComment} from './useComment';
+import {commentaryState} from '../state';
 
 const Container = styled.div({
   display: 'inline-flex',
@@ -15,7 +16,7 @@ const Comment = styled.span({
 });
 
 export const Commentary = () => {
-  const comment = useComment();
+  const comment = useRecoilValue(commentaryState);
 
   return (
     <Container>

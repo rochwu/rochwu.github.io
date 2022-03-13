@@ -1,5 +1,5 @@
 {
-  "name": "rochwu",
+  "name": "night-mode-attempt",
   "homepage": "https://rochwu.github.io",
   "version": "1.1.0",
   "description": "",
@@ -8,6 +8,7 @@
   "dependencies": {
     "@emotion/react": "11.7.1",
     "@emotion/styled": "11.6.0",
+    "@use-gesture/react": "10.2.9",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-icons": "4.3.1",
@@ -29,5 +30,10 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

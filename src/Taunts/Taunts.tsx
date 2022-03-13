@@ -1,5 +1,5 @@
-import {useEffect, useMemo, VFC} from 'react';
-import {useRecoilState, useRecoilValue} from 'recoil';
+import {useMemo, VFC} from 'react';
+import {useRecoilValue} from 'recoil';
 
 import {
   attemptsState,
@@ -7,18 +7,11 @@ import {
   tauntsState,
   starsFelledState,
 } from '../state';
-import {useGps} from '../GpsContext';
-import {useSynced} from '../SyncedContext';
-import {MILESTONES} from '../constants';
 
 import {Taunt} from '../Taunt';
-import {insult} from './insult';
 
 const TauntsMap: VFC = () => {
-  const gps = useGps();
-  const schedule = useSynced();
-
-  const [taunts, setTaunts] = useRecoilState(tauntsState);
+  const taunts = useRecoilValue(tauntsState);
   const attempts = useRecoilValue(attemptsState);
   const starsFelled = useRecoilValue(starsFelledState);
 
@@ -31,32 +24,6 @@ const TauntsMap: VFC = () => {
     // We ignore `today` to render `taunts` in sync
     // Else we'd render the `taunts` twice, one before the addition
   }, [taunts]);
-
-  useEffect(() => {
-    schedule(() => {
-      setTaunts((previous) => {
-        const [first, ...rest] = previous;
-        const {top, left} = gps.get('button'); // Button always has top and left
-
-        const newTaunt = {
-          top: top!,
-          left: left!,
-          insult: insult(),
-          birthday: today,
-        };
-
-        // -1 for first because 28 has to be enforced!
-        if (rest.length >= MILESTONES.MAX_TAUNT_AGE - 1) {
-          return [...rest, newTaunt];
-        } else if (!first) {
-          return [newTaunt];
-        } else {
-          return [first, ...rest, newTaunt];
-        }
-      });
-    });
-    // Only button chasing attempts make new taunts
-  }, [attempts]);
 
   return <>{elements}</>;
 };

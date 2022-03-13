@@ -1,9 +1,8 @@
-import {useRecoilValue} from 'recoil';
-
-import {attemptsState, starsFelledState} from '../state';
 import {randomIndex} from '../randomIndex';
 import {MILESTONES} from '../constants';
 import {mutateOrder} from '../mutateOrder';
+
+import {SystemProps} from './types';
 
 const WONDER_CASES = 5;
 
@@ -66,9 +65,8 @@ const praiseScore = (attempts: number) => {
   }
 };
 
-export const useComment = () => {
-  const attempts = useRecoilValue(attemptsState);
-  const haveFalledStars = useRecoilValue(starsFelledState) > 0;
+export const comment = ({attempts, starsFelled}: SystemProps) => {
+  const haveFalledStars = starsFelled > 0;
 
   if (attempts > MILESTONES.INCREMENTAL_ON * 7) {
     return philosophize();
