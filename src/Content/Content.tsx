@@ -1,31 +1,24 @@
-import {useRef, useState, VFC, PointerEvent, HTMLAttributes} from 'react';
+import {useRef, useState, VFC, PointerEvent} from 'react';
 import styled from '@emotion/styled';
 import {useDrag} from '@use-gesture/react';
 import {useSetRecoilState} from 'recoil';
 
 import {AppLoop} from '../AppLoop';
-import {Header} from '../Header';
-import {Main} from '../Main';
 import {DayProvider} from '../StyledContext';
 import {setUnlockState} from '../state';
 
 import {sliderWidth} from './dimensions';
 import {useWidthRefs} from './useWidthRefs';
+import {Slider} from './Slider';
+import {MirroredContent} from './MirroredContent';
 
-const Container = styled.div({
-  position: 'relative',
-  height: '100%',
-  margin: 'auto',
-});
-
-const ComponentContainer = styled.div(
+const Container = styled.div(
   {
-    position: 'absolute',
+    position: 'relative',
     height: '100%',
-    left: 0,
+    margin: 'auto',
   },
   ({theme}) => ({
-    color: theme.text,
     backgroundColor: theme.app,
   }),
 );
@@ -37,29 +30,8 @@ const Window = styled.div({
   overflowX: 'hidden',
 });
 
-const Slider = styled.div({
-  position: 'absolute',
-  height: '100%',
-  width: sliderWidth,
-  backgroundColor: '#808080',
-  cursor: 'grab',
-  ':active': {
-    cursor: 'grabbing',
-  },
-  touchAction: 'none', // use-gesture was complaining
-});
-
-const Component: VFC<HTMLAttributes<HTMLDivElement>> = (props) => {
-  return (
-    <ComponentContainer {...props}>
-      <Header />
-      <Main />
-    </ComponentContainer>
-  );
-};
-
 export const Content: VFC = () => {
-  const [percent, setPercent] = useState(() => '0%');
+  const [percent, setPercent] = useState(() => 0);
 
   const ref = useRef<HTMLDivElement>(null);
   const {width, offset} = useWidthRefs(ref);
@@ -69,24 +41,34 @@ export const Content: VFC = () => {
   const bind = useDrag<PointerEvent<HTMLDivElement>>(({xy: [x]}) => {
     const normalX = x - offset.current;
     const percent = Math.max(Math.min((normalX / width.current) * 100, 100), 0);
-    setPercent(`${percent}%`);
+    setPercent(percent);
 
     if (percent >= 1) {
       unlock('dayMode');
     }
   });
 
-  const componentStyle = {width: width.current - sliderWidth * 2};
+  const containerStyle = {
+    width: width.current,
+  };
+  const contentStyle = {
+    // Slider is centered, only need to acount for half of each side
+    width: width.current - sliderWidth,
+  };
+  const windowStyle = {
+    width: `${percent}%`,
+  };
 
+  // Heavily uses style to prevent styled from making hella stylesheets
   return (
-    <Container ref={ref} style={{width: width.current}}>
-      <Component style={componentStyle} />
-      <Window style={{width: percent}}>
+    <Container ref={ref} style={containerStyle}>
+      <MirroredContent style={contentStyle} />
+      <Window style={windowStyle}>
         <DayProvider>
-          <Component style={componentStyle} />
+          <MirroredContent style={contentStyle} />
         </DayProvider>
       </Window>
-      <Slider aria-hidden {...bind()} style={{left: percent}} />
+      <Slider {...bind()} atPercent={percent} />
       <AppLoop />
     </Container>
   );

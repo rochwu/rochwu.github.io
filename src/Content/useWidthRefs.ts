@@ -1,13 +1,13 @@
 import {RefObject, useEffect, useReducer, useRef} from 'react';
 
-import {componentWidth} from './dimensions';
+import {contentWidth} from './dimensions';
 
 const {body} = window.document;
 
 export const useWidthRefs = <E extends HTMLElement>(ref: RefObject<E>) => {
   // Using forceupdate to ensure right vars on useDrag callback
   const forceUpdate = useReducer(() => [], [])[1];
-  const width = useRef(componentWidth);
+  const width = useRef(contentWidth);
   const offset = useRef(0);
 
   useEffect(() => {
@@ -15,10 +15,10 @@ export const useWidthRefs = <E extends HTMLElement>(ref: RefObject<E>) => {
       const element = ref.current!.getBoundingClientRect();
       const container = body.getBoundingClientRect();
 
-      if (container.width < componentWidth) {
+      if (container.width < contentWidth) {
         width.current = container.width;
       } else {
-        width.current = componentWidth;
+        width.current = contentWidth;
       }
 
       offset.current = element.left;
