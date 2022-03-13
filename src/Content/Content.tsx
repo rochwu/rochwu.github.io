@@ -20,9 +20,7 @@ const Container = styled.div({
 
 const ComponentContainer = styled.div(
   {
-    display: 'flex',
     position: 'absolute',
-    flexDirection: 'column',
     height: '100%',
     left: 0,
   },
@@ -34,6 +32,7 @@ const ComponentContainer = styled.div(
 
 const Window = styled.div({
   position: 'absolute',
+  left: 0,
   height: '100%',
   overflowX: 'hidden',
 });
@@ -47,6 +46,7 @@ const Slider = styled.div({
   ':active': {
     cursor: 'grabbing',
   },
+  touchAction: 'none', // use-gesture was complaining
 });
 
 const Component: VFC<HTMLAttributes<HTMLDivElement>> = (props) => {

@@ -17,7 +17,7 @@ export type Immediate = {
     options?: ImmediateOptions,
   ) => void;
   unsubscribe: (options?: ImmediateOptions) => void;
-  run: <P>(params: P[], options?: ImmediateOptions) => void;
+  run: (params: any[], options?: ImmediateOptions) => void;
 };
 
 export type Synced = {
@@ -27,12 +27,12 @@ export type Synced = {
   };
   all: Immediate & {
     byId: {
-      [key: string]: ImmediateCallbackRef[];
+      [id: string]: ImmediateCallbackRef[];
     };
   };
   once: Immediate & {
     byId: {
-      [key: string]: {callbackRefs: ImmediateCallbackRef[]; calls: number};
+      [id: string]: {callbackRefs: ImmediateCallbackRef[]; calls: number};
     };
   };
 };

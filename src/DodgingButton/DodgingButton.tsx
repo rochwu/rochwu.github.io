@@ -1,8 +1,6 @@
 import {
   CSSProperties,
-  DOMAttributes,
   FC,
-  FocusEventHandler,
   MouseEventHandler,
   useRef,
   useState,
@@ -11,7 +9,7 @@ import {
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 
 import {useGps} from '../GpsContext';
-import {useAll, useOnce, useSynced} from '../SyncedContext';
+import {useAll, useSynced} from '../SyncedContext';
 import {
   attemptsState,
   breakPositionState,
@@ -19,11 +17,13 @@ import {
   setUnlockState,
 } from '../state';
 import {newPosition} from '../newPosition';
+import {useMutex} from '../useMutex';
 
 import {useButtonRef} from './useButtonRef';
 import {initialStyle} from './initialStyle';
 import {HidableText} from './HidableText';
 import {Button} from './Button';
+import {useFocus} from './useFocus';
 
 const goToGithub = () => {
   window.location.href = 'https://github.com/rochwu';
@@ -33,11 +33,14 @@ const PositionedButton: FC = ({children}) => {
   const gps = useGps();
   const ref = useButtonRef();
   const schedule = useSynced();
+  const {focus, unfocus, style: focusStyle} = useFocus();
+  // TODO: this order matters, the -1 tabIndex is sent to day
+  // Ideally we'd see whether we're visible or not
+  const tabIndex = useMutex('button', undefined, -1);
 
   const [style, setStyle] = useState<CSSProperties>(initialStyle);
   const hasEntered = useRef(false);
   const hasOvered = useRef(false);
-  const hasFocused = useRef(false);
 
   const isBreaking = useRecoilValue(isButtonBreaking);
   const setAttempts = useSetRecoilState(attemptsState);
@@ -58,8 +61,15 @@ const PositionedButton: FC = ({children}) => {
     {id: 'disappear'},
   );
 
+  const entered = useAll(
+    () => {
+      hasEntered.current = true;
+    },
+    {id: 'entered'},
+  );
+
   const dodge: MouseEventHandler = () => {
-    hasEntered.current = true;
+    entered();
 
     if (isBreaking) {
       const position = gps.get('button');
@@ -97,28 +107,16 @@ const PositionedButton: FC = ({children}) => {
         },
       };
 
-  const onFocus: DOMAttributes<
-    HTMLButtonElement
-  >['onFocus'] = hasFocused.current
-    ? undefined
-    : (event) => {
-        console.log(event);
-
-        if (hasFocused.current) {
-          return;
-        }
-
-        hasFocused.current = true;
-        unlock('keyboardFocus');
-      };
-
+  // TODO: tabIndex for the hidden button
   return (
     <Button
       aria-label="Link to my github at github.com/rochwu"
       ref={ref}
-      style={style}
+      style={{...style, ...focusStyle}}
+      tabIndex={tabIndex}
+      onBlur={unfocus}
       onClick={goToGithub}
-      onFocus={onFocus}
+      onFocus={focus}
       onMouseEnter={dodge}
       {...overHandlers}
     >
