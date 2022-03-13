@@ -4,6 +4,7 @@ import {animated, useSpring} from 'react-spring';
 import {useRecoilValue} from 'recoil';
 
 import {getUnlocksState, UNLOCKS_MAX, useClearUnlocks} from '../state';
+import {useAll} from '../SyncedContext';
 
 const Container = styled(animated.div)({
   display: 'flex',
@@ -63,9 +64,12 @@ export const Unlocks: VFC = () => {
     // Change only on flip to hide transition while hovered
   }, [flipped]);
 
-  const flip = () => {
-    setFlipped((previous) => !previous);
-  };
+  const flip = useAll(
+    () => {
+      setFlipped((previous) => !previous);
+    },
+    {id: 'unlocks'},
+  );
 
   const handleClick = () => {
     if (flipped) {

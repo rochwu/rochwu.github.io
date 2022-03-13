@@ -7,7 +7,10 @@ const Container = styled.div<Props>(
   ({height}) => ({
     height,
   }),
-  {width: '100%', position: 'relative', overflow: 'hidden'},
+  {
+    width: '100%',
+    overflow: 'hidden', // Curtains can push horizontally
+  },
 );
 
 /**

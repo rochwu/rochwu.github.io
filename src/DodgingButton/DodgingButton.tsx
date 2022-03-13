@@ -1,6 +1,8 @@
 import {
   CSSProperties,
+  DOMAttributes,
   FC,
+  FocusEventHandler,
   MouseEventHandler,
   useRef,
   useState,
@@ -9,7 +11,7 @@ import {
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 
 import {useGps} from '../GpsContext';
-import {useSynced} from '../SyncedContext';
+import {useAll, useOnce, useSynced} from '../SyncedContext';
 import {
   attemptsState,
   breakPositionState,
@@ -42,6 +44,20 @@ const PositionedButton: FC = ({children}) => {
   const setBreakPosition = useSetRecoilState(breakPositionState);
   const unlock = useSetRecoilState(setUnlockState);
 
+  const move = useAll(
+    (top, left) => {
+      setStyle({top: `${top}%`, left: `${left}%`});
+    },
+    {id: 'move'},
+  );
+
+  const disappear = useAll(
+    () => {
+      setStyle({display: 'none'});
+    },
+    {id: 'disappear'},
+  );
+
   const dodge: MouseEventHandler = () => {
     hasEntered.current = true;
 
@@ -54,13 +70,10 @@ const PositionedButton: FC = ({children}) => {
 
     gps.set('button', {top, left});
 
-    setStyle({display: 'none'});
-    schedule(
-      () => {
-        setStyle({top: `${top}%`, left: `${left}%`});
-      },
-      {override: true},
-    );
+    disappear();
+    schedule(() => {
+      move(top, left);
+    });
 
     // At the end to prevent a flash when the button goes away
     setAttempts((previous) => previous + 1);
@@ -84,9 +97,13 @@ const PositionedButton: FC = ({children}) => {
         },
       };
 
-  const onFocus = hasFocused.current
+  const onFocus: DOMAttributes<
+    HTMLButtonElement
+  >['onFocus'] = hasFocused.current
     ? undefined
-    : () => {
+    : (event) => {
+        console.log(event);
+
         if (hasFocused.current) {
           return;
         }
