@@ -1,12 +1,12 @@
 import {useCallback, useContext, useRef, useEffect} from 'react';
 
 import {Context} from './Context';
-import {ImmediateCallback, ImmediateOptions, Synced} from './types';
+import {AnyFunction, ImmediateOptions, Synced} from './types';
 
 const createUseImmediate = (type: keyof Pick<Synced, 'all' | 'once'>) =>
-  function useImmediate(
+  function useImmediate<C extends AnyFunction>(
     // TODO: tie the callback better
-    callback: ImmediateCallback,
+    callback: C,
     options?: ImmediateOptions,
   ) {
     const context = useContext(Context)[type];
@@ -22,12 +22,7 @@ const createUseImmediate = (type: keyof Pick<Synced, 'all' | 'once'>) =>
       };
     }, [context]);
 
-    const run = useCallback(
-      (...params) => {
-        context.run(params, options);
-      },
-      [context],
-    );
+    const run = useCallback<typeof callback>(context.run(options), [context]);
 
     return run;
   };

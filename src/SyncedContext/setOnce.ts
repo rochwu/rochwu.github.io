@@ -19,22 +19,24 @@ export const setOnce = (once: Synced['once']) => {
     }
   };
 
-  once.run = (args: any[], options) => {
+  once.run = (options) => {
     const id = options?.id || 'default';
 
-    const state = once.byId[id];
+    return (...args: any[]) => {
+      const state = once.byId[id];
 
-    // If the state is a one time event instead of periodic,
-    // not resetting should be fine
-    // TODO: Keep an eye on this
-    if (state.calls === 0) {
-      state.callbackRefs[0].current(...args);
-    }
+      // If the state is a one time event instead of periodic,
+      // not resetting should be fine
+      // TODO: Keep an eye on this
+      if (state.calls === 0) {
+        state.callbackRefs[0].current(...args);
+      }
 
-    state.calls += 1;
+      state.calls += 1;
 
-    if (state.calls >= state.callbackRefs.length) {
-      state.calls = 0;
-    }
+      if (state.calls >= state.callbackRefs.length) {
+        state.calls = 0;
+      }
+    };
   };
 };

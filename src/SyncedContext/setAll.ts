@@ -21,11 +21,13 @@ export const setAll = (all: Synced['all']) => {
     }
   };
 
-  all.run = (args: any[], options) => {
+  all.run = (options) => {
     const id = options?.id || 'default';
 
-    all.byId[id]?.forEach(({current: callback}) => {
-      callback(...args);
-    });
+    return (...args: any[]) => {
+      all.byId[id]?.forEach(({current: callback}) => {
+        callback(...args);
+      });
+    };
   };
 };
