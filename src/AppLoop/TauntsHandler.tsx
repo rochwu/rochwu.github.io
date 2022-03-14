@@ -1,12 +1,13 @@
 import {useEffect, VFC} from 'react';
 import {useSetRecoilState} from 'recoil';
 
+import {insult} from './insult';
+
 import {useGps} from '../GpsContext';
 import {useSynced} from '../SyncedContext';
 import {MILESTONES} from '../constants';
 import {tauntsState} from '../state';
 
-import {insult} from './insult';
 import {LoopProps} from './types';
 
 export const TauntsHandler: VFC<LoopProps> = ({attempts, starsFelled}) => {
