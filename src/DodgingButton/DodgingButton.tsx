@@ -48,7 +48,7 @@ const PositionedButton: FC = ({children}) => {
   const unlock = useSetRecoilState(setUnlockState);
 
   const move = useAll(
-    (top, left) => {
+    (top: number, left: number) => {
       setStyle({top: `${top}%`, left: `${left}%`});
     },
     {id: 'move'},

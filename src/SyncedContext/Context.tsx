@@ -1,4 +1,6 @@
-import {createContext, FC, useContext, useLayoutEffect} from 'react';
+import {createContext, FC, useContext, useRef} from 'react';
+
+import {useWillMount} from '../useWillMount';
 
 import {Synced} from './types';
 import {setAll} from './setAll';
@@ -21,13 +23,13 @@ const Provider = Context.Provider;
 export const SyncedProvider: FC = ({children}) => {
   const context = useContext(Context);
 
-  useLayoutEffect(() => {
+  useWillMount(() => {
     const {all, once, schedule} = context;
 
     setAll(all);
     setOnce(once);
     setSchedule(schedule);
-  }, [context]);
+  });
 
   return <Provider value={context}>{children}</Provider>;
 };

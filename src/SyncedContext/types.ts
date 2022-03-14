@@ -1,5 +1,7 @@
 import {MutableRefObject} from 'react';
 
+export type AnyFunction = ((...params: any[]) => any) | (() => any);
+
 export type ScheduleCallback = () => void;
 
 export type Schedule = (
@@ -8,16 +10,15 @@ export type Schedule = (
 ) => void;
 
 export type ImmediateOptions = {id?: string | number};
-export type ImmediateCallback = (...args: any[]) => void;
-type ImmediateCallbackRef = MutableRefObject<ImmediateCallback>;
+type ImmediateCallbackRef<C extends AnyFunction> = MutableRefObject<C>;
 
-export type Immediate = {
+export type Immediate<C extends AnyFunction> = {
   subscribe: (
-    callbackRef: ImmediateCallbackRef,
+    callbackRef: ImmediateCallbackRef<C>,
     options?: ImmediateOptions,
   ) => void;
   unsubscribe: (options?: ImmediateOptions) => void;
-  run: (params: any[], options?: ImmediateOptions) => void;
+  run: (options?: ImmediateOptions) => C;
 };
 
 export type Synced = {
@@ -25,14 +26,17 @@ export type Synced = {
     callbacks: ScheduleCallback[];
     subscribe: Schedule;
   };
-  all: Immediate & {
+  all: Immediate<any> & {
     byId: {
-      [id: string]: ImmediateCallbackRef[];
+      [id: string]: ImmediateCallbackRef<AnyFunction>[];
     };
   };
-  once: Immediate & {
+  once: Immediate<any> & {
     byId: {
-      [id: string]: {callbackRefs: ImmediateCallbackRef[]; calls: number};
+      [id: string]: {
+        callbackRefs: ImmediateCallbackRef<AnyFunction>[];
+        calls: number;
+      };
     };
   };
 };
