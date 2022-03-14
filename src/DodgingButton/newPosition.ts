@@ -1,4 +1,4 @@
-import {Metadata} from './types';
+import {Metadata} from '../types';
 
 const computePosition = (container: number, child: number) => {
   const difference = container - child;

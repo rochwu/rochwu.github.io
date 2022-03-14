@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import {Header} from '../Header';
 import {Main} from '../Main';
 
-import {sliderWidth} from './dimensions';
+import {sliderOffset} from './dimensions';
 
 const Container = styled.div(
   {
@@ -12,7 +12,7 @@ const Container = styled.div(
     flexDirection: 'column',
     position: 'absolute',
     height: '100%',
-    transform: `translateX(${sliderWidth / 2}px)`, // Basically centering
+    transform: `translateX(${sliderOffset / 2}px)`, // Basically centering
   },
   ({theme}) => ({
     color: theme.text,

@@ -30,7 +30,7 @@ const Container = styled.div({
 type Props = HTMLAttributes<HTMLDivElement> & {atPercent: number};
 
 export const Slider: VFC<Props> = ({atPercent, ...props}) => {
-  const isCorner = atPercent === 0 || atPercent === 100;
+  const isCorner = atPercent === 0;
 
   return (
     <Container aria-hidden style={{left: `${atPercent}%`}} {...props}>

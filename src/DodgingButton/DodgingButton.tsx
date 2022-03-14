@@ -16,7 +16,6 @@ import {
   isButtonBreaking,
   setUnlockState,
 } from '../state';
-import {newPosition} from '../newPosition';
 import {useMutex} from '../useMutex';
 
 import {useButtonRef} from './useButtonRef';
@@ -24,6 +23,7 @@ import {initialStyle} from './initialStyle';
 import {HidableText} from './HidableText';
 import {Button} from './Button';
 import {useFocus} from './useFocus';
+import {newPosition} from './newPosition';
 
 const goToGithub = () => {
   window.location.href = 'https://github.com/rochwu';

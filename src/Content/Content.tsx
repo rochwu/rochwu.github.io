@@ -7,7 +7,7 @@ import {AppLoop} from '../AppLoop';
 import {DayProvider} from '../StyledContext';
 import {setUnlockState} from '../state';
 
-import {sliderWidth} from './dimensions';
+import {sliderOffset, sliderWidth} from './dimensions';
 import {useWidthRefs} from './useWidthRefs';
 import {Slider} from './Slider';
 import {MirroredContent} from './MirroredContent';
@@ -53,7 +53,7 @@ export const Content: VFC = () => {
   };
   const contentStyle = {
     // Slider is centered, only need to acount for half of each side
-    width: width.current - sliderWidth,
+    width: width.current - sliderOffset,
   };
   const windowStyle = {
     width: `${percent}%`,
