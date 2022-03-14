@@ -1,12 +1,16 @@
 import styled from '@emotion/styled';
 import {HTMLAttributes, VFC} from 'react';
 
+import {blendHex} from '../blendHex';
+import {APP, TEXT} from '../constants';
+
 import {sliderWidth} from './dimensions';
 import {WaveBar} from './WaveBar';
 
+const backgroundColor = blendHex(APP.BACK_COLOR, TEXT.COLOR);
+
 const Container = styled.div({
   position: 'absolute',
-  left: 0,
   height: '100%',
   width: sliderWidth,
   transform: `translateX(-50%)`,
@@ -14,7 +18,13 @@ const Container = styled.div({
   ':active': {
     cursor: 'grabbing',
   },
+  ':hover': {
+    opacity: '25%',
+    backgroundColor,
+    borderRadius: sliderWidth,
+  },
   touchAction: 'none', // use-gesture was complaining
+  boxSizing: 'border-box',
 });
 
 type Props = HTMLAttributes<HTMLDivElement> & {atPercent: number};

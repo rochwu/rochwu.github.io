@@ -2,7 +2,7 @@ import {useEffect, VFC} from 'react';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 
 import {setUnlockState, starsFelledState} from '../state';
-import {APP} from '../constants';
+import {BADGE} from '../constants';
 
 import {Badge} from './Badge';
 
@@ -20,8 +20,8 @@ export const BadgeFelledStars: VFC = () => {
 
   return (
     <Badge
-      backgroundColor={`#A57EA4`}
-      color={APP.BACK_COLOR}
+      backgroundColor={BADGE.INVERSE.BACK_COLOR}
+      color={BADGE.INVERSE.COLOR}
       isVisible={isVisible}
     >
       -{score}
