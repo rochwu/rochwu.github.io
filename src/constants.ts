@@ -11,7 +11,7 @@ export const APP = {
 };
 
 export const BODY = {
-  BACK_COLOR: '#100c08', // TODO: Sync with styles.css
+  BACK_COLOR: '#100C08',
 };
 
 export const BUTTON = {
@@ -20,12 +20,16 @@ export const BUTTON = {
   BORDER_SIZE: 2,
 };
 
-export const BADGE = {
-  BACK_COLOR: '#D0342C',
-  COLOR: 'white',
-  SIZE: '52px',
-};
-
 export const TEXT = {
   COLOR: '#EFEFEF',
+};
+
+export const BADGE = {
+  BACK_COLOR: '#D0342C',
+  COLOR: TEXT.COLOR,
+  INVERSE: {
+    BACK_COLOR: '#A57EA4',
+    COLOR: APP.BACK_COLOR,
+  },
+  SIZE: '52px',
 };
