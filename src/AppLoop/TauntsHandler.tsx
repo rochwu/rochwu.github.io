@@ -6,7 +6,7 @@ import {useSynced} from '../SyncedContext';
 import {MILESTONES} from '../constants';
 import {tauntsState} from '../state';
 
-import {insult} from './insult';
+import {taunt} from './taunt';
 import {LoopProps} from './types';
 
 export const TauntsHandler: VFC<LoopProps> = ({attempts, starsFelled}) => {
@@ -26,7 +26,7 @@ export const TauntsHandler: VFC<LoopProps> = ({attempts, starsFelled}) => {
         const newTaunt = {
           top: top!,
           left: left!,
-          insult: insult(),
+          insult: taunt(),
           birthday: today,
         };
 
