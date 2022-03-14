@@ -5,6 +5,7 @@ import {useSetRecoilState} from 'recoil';
 
 import {MILESTONES} from '../constants';
 import {starsFelledState, tauntsState} from '../state';
+import {useAll, useOnce} from '../SyncedContext';
 
 import {cry} from './cry';
 import {TauntProps} from './types';
@@ -45,14 +46,10 @@ const AnimatedTaunt: VFC<Omit<TauntProps, 'top' | 'left'>> = ({
     },
   }));
 
-  if (!isUnmounting.current) {
-    api.start({
-      opacity: `${age}%`,
-    });
-  }
+  const unmount = useOnce(
+    () => {
+      setStarsFelled((previous) => previous + 1);
 
-  const handleClick = () => {
-    const unmount = () => {
       setTaunts((previous) => {
         const toRemove = previous.findIndex(
           (taunt) => taunt.birthday === birthday,
@@ -63,20 +60,35 @@ const AnimatedTaunt: VFC<Omit<TauntProps, 'top' | 'left'>> = ({
           ...previous.slice(toRemove + 1),
         ];
       });
-    };
+    },
+    {id: birthday},
+  );
 
-    setMessage(cry());
-    isUnmounting.current = true;
-    setStarsFelled((previous) => previous + 1);
+  const all = useAll(
+    (message: string) => {
+      setMessage(message);
+      isUnmounting.current = true;
 
-    api.start({
-      cursor: 'default',
-      explode: 0,
-      opacity: `0%`,
-      onRest: unmount,
-      config: {duration: 1000},
-    });
+      api.start({
+        cursor: 'default',
+        explode: 0,
+        opacity: `0%`,
+        onRest: unmount,
+        config: {duration: 1000},
+      });
+    },
+    {id: birthday},
+  );
+
+  const handleClick = () => {
+    all(cry());
   };
+
+  if (!isUnmounting.current) {
+    api.start({
+      opacity: `${age}%`,
+    });
+  }
 
   return (
     <Animation

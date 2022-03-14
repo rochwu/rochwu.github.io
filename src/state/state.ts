@@ -25,6 +25,11 @@ export const tauntsState = atom<TauntState[]>({
   default: [],
 });
 
+export const commentaryState = atom<string>({
+  key: 'commentaryState',
+  default: '',
+});
+
 export const isButtonBroken = selector({
   key: 'isButtonBroken', // unique ID (with respect to other atoms/selectors)
   get: ({get}) => {

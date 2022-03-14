@@ -9,12 +9,10 @@ import {Schedule} from './types';
 export const useSynced = (): Schedule => {
   const context = useContext(Context);
 
-  const schedule = useCallback(
-    (syncedCallback) => {
-      context.subscribe(syncedCallback);
+  return useCallback(
+    (syncedCallback, options) => {
+      context.schedule.subscribe(syncedCallback, options);
     },
     [context],
   );
-
-  return schedule;
 };

@@ -3,12 +3,8 @@ import {ThemeProvider} from '@emotion/react';
 
 import {APP, BUTTON, TEXT} from '../constants';
 
-const commonTheme = {
-  button: BUTTON.COLOR,
-};
-
 const nightTheme = {
-  ...commonTheme,
+  button: BUTTON.COLOR,
   text: TEXT.COLOR,
   app: APP.BACK_COLOR,
 };
@@ -16,7 +12,7 @@ const nightTheme = {
 export type Theme = typeof nightTheme;
 
 const dayTheme: Theme = {
-  ...commonTheme,
+  button: '#489186',
   text: APP.BACK_COLOR,
   app: TEXT.COLOR,
 };

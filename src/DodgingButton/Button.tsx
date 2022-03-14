@@ -23,9 +23,5 @@ export const Button = styled.button(
   },
   ({theme}) => ({
     border: `${BUTTON.BORDER_SIZE}px outset ${theme.button}`,
-    ':focus': {
-      outline: `3px double ${theme.button}`,
-      outlineOffset: '1px',
-    },
   }),
 );

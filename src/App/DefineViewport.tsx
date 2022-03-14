@@ -7,6 +7,8 @@ const Container = styled.div<Props>(
   ({height}) => ({
     height,
   }),
+  // All these prevents translate to overflow
+  // Specially in Firefox
   {width: '100%', position: 'relative', overflow: 'hidden'},
 );
 

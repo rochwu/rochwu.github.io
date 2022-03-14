@@ -9,6 +9,7 @@ type Unlocks = {
   incremental: boolean;
   starFall: boolean;
   buttonBreak: boolean;
+  dayMode: boolean;
 };
 
 const defaultValue: Unlocks = {
@@ -17,6 +18,7 @@ const defaultValue: Unlocks = {
   incremental: false,
   starFall: false,
   buttonBreak: false,
+  dayMode: false,
 };
 
 export const UNLOCKS_MAX = Object.keys(defaultValue).length;
