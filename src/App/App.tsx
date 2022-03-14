@@ -4,10 +4,10 @@ import {RecoilRoot} from 'recoil';
 import {GpsProvider} from '../GpsContext';
 import {ResponsiveProvider} from '../ResponsiveContext';
 import {SyncedProvider} from '../SyncedContext';
+import {NightProvider} from '../StyledContext';
 
 import {Loader} from './Loader';
 import {DefineViewport} from './DefineViewport';
-import {NightProvider} from '../StyledContext';
 
 export const App: VFC = () => {
   useEffect(() => {

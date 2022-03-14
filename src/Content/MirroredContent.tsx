@@ -1,5 +1,6 @@
 import {VFC, HTMLAttributes} from 'react';
 import styled from '@emotion/styled';
+
 import {Header} from '../Header';
 import {Main} from '../Main';
 

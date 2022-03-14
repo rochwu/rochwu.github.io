@@ -7,7 +7,6 @@ import {
   tauntsState,
   starsFelledState,
 } from '../state';
-
 import {Taunt} from '../Taunt';
 
 const TauntsMap: VFC = () => {

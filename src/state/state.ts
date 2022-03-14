@@ -2,7 +2,6 @@ import {CSSProperties} from 'react';
 import {atom, selector} from 'recoil';
 
 import {MILESTONES} from '../constants';
-
 import {TauntState} from '../types';
 
 export const attemptsState = atom({

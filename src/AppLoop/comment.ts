@@ -2,7 +2,7 @@ import {randomIndex} from '../randomIndex';
 import {MILESTONES} from '../constants';
 import {mutateOrder} from '../mutateOrder';
 
-import {SystemProps} from './types';
+import {LoopProps} from './types';
 
 const WONDER_CASES = 5;
 
@@ -65,7 +65,7 @@ const praiseScore = (attempts: number) => {
   }
 };
 
-export const comment = ({attempts, starsFelled}: SystemProps) => {
+export const comment = ({attempts, starsFelled}: LoopProps) => {
   const haveFalledStars = starsFelled > 0;
 
   if (attempts > MILESTONES.INCREMENTAL_ON * 7) {

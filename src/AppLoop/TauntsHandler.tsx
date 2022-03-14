@@ -7,9 +7,9 @@ import {MILESTONES} from '../constants';
 import {tauntsState} from '../state';
 
 import {insult} from './insult';
-import {SystemProps} from './types';
+import {LoopProps} from './types';
 
-export const TauntsHandler: VFC<SystemProps> = ({attempts, starsFelled}) => {
+export const TauntsHandler: VFC<LoopProps> = ({attempts, starsFelled}) => {
   const gps = useGps();
   const schedule = useSynced();
 

@@ -1,5 +1,6 @@
 import {VFC} from 'react';
 import styled from '@emotion/styled';
+
 import {TEXT} from '../constants';
 import {ResponsiveLevel, useResponsiveLevel} from '../ResponsiveContext';
 

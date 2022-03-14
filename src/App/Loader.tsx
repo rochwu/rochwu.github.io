@@ -7,23 +7,15 @@ import {useIsReady} from './useIsReady';
 import {WelcomeOverlay} from './WelcomeOverlay';
 import {TouchDisclaimer} from './TouchDisclaimer';
 
-const welcome = !!new URLSearchParams(window.location.search).get('unwelcome');
-
 // TODO: Maybe add visibility change to remount this when inactive
 export const Loader: VFC = () => {
   const isReady = useIsReady();
 
-  const welcomeCommittee = (
-    <>
-      <Curtains shouldShow={!isReady} />
-      <WelcomeOverlay shouldShow={!isReady} />
-    </>
-  );
-
   return (
     <>
       <Content />
-      {welcome && welcomeCommittee}
+      <Curtains shouldShow={!isReady} />
+      <WelcomeOverlay shouldShow={!isReady} />
       <TouchDisclaimer />
     </>
   );
