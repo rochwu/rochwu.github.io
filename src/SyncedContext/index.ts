@@ -1,5 +1,5 @@
 import {SyncedProvider} from './Context';
-import {useSynced} from './useSynced';
+import {useSchedule} from './useSchedule';
 import {useAll, useOnce} from './useImmediate';
 
-export {useSynced, useAll, useOnce, SyncedProvider};
+export {useSchedule, useAll, useOnce, SyncedProvider};
