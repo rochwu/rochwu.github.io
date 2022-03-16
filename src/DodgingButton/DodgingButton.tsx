@@ -9,7 +9,7 @@ import {
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 
 import {useGps} from '../GpsContext';
-import {useAll, useSynced} from '../SyncedContext';
+import {useAll, useSchedule} from '../SyncedContext';
 import {
   attemptsState,
   breakPositionState,
@@ -32,7 +32,7 @@ const goToGithub = () => {
 const PositionedButton: FC = ({children}) => {
   const gps = useGps();
   const ref = useButtonRef();
-  const schedule = useSynced();
+  const schedule = useSchedule();
   const {focus, unfocus, style: focusStyle} = useFocus();
   // TODO: this order matters, the -1 tabIndex is sent to day
   // Ideally we'd see whether we're visible or not

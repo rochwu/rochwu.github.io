@@ -1,7 +1,7 @@
 import {useCallback, useContext, useRef, useEffect} from 'react';
 
-import {Context} from './Context';
-import {AnyFunction, ImmediateOptions, Synced} from './types';
+import {Context, Synced} from './Context';
+import {AnyFunction, ImmediateOptions} from './types';
 
 const createUseImmediate = (type: keyof Pick<Synced, 'all' | 'once'>) =>
   function useImmediate<C extends AnyFunction>(
