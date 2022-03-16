@@ -7,7 +7,6 @@ import {AppLoop} from '../AppLoop';
 import {DayProvider} from '../StyledContext';
 import {setUnlockState} from '../state';
 
-import {sliderOffset, sliderWidth} from './dimensions';
 import {useWidthRefs} from './useWidthRefs';
 import {Slider} from './Slider';
 import {MirroredContent} from './MirroredContent';
@@ -30,7 +29,7 @@ const Window = styled.div({
   overflowX: 'hidden',
 });
 
-export const Content: VFC = () => {
+export const Body: VFC = () => {
   const [percent, setPercent] = useState(() => 0);
 
   const ref = useRef<HTMLDivElement>(null);
@@ -48,24 +47,21 @@ export const Content: VFC = () => {
     }
   });
 
-  const containerStyle = {
+  const widthStyle = {
     width: width.current,
   };
-  const contentStyle = {
-    // Slider is centered, only need to acount for half of each side
-    width: width.current - sliderOffset,
-  };
+
   const windowStyle = {
     width: `${percent}%`,
   };
 
   // Heavily uses style to prevent styled from making hella stylesheets
   return (
-    <Container ref={ref} style={containerStyle}>
-      <MirroredContent style={contentStyle} />
+    <Container ref={ref} style={widthStyle}>
+      <MirroredContent style={widthStyle} />
       <Window style={windowStyle}>
         <DayProvider>
-          <MirroredContent style={contentStyle} />
+          <MirroredContent style={widthStyle} />
         </DayProvider>
       </Window>
       <Slider {...bind()} atPercent={percent} />
