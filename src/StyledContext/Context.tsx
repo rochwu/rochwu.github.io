@@ -3,6 +3,7 @@ import {ThemeProvider} from '@emotion/react';
 
 import {APP, BUTTON, TEXT} from '../constants';
 
+// The OG theme, I just wanted to document that
 const nightTheme = {
   button: BUTTON.COLOR,
   text: TEXT.COLOR,
