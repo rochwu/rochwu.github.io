@@ -5,7 +5,6 @@ import {AnyFunction, ImmediateOptions, Synced} from './types';
 
 const createUseImmediate = (type: keyof Pick<Synced, 'all' | 'once'>) =>
   function useImmediate<C extends AnyFunction>(
-    // TODO: tie the callback better
     callback: C,
     options?: ImmediateOptions,
   ) {

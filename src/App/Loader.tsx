@@ -1,6 +1,6 @@
 import {VFC} from 'react';
 
-import {Content} from '../Content';
+import {Body} from '../Body';
 import {hasSearchParams} from '../hasSearchParams';
 
 import {Curtains} from './Curtains';
@@ -23,7 +23,7 @@ export const Loader: VFC = () => {
 
   return (
     <>
-      <Content />
+      <Body />
       {welcomeScreen}
       <TouchDisclaimer />
     </>
