@@ -23,7 +23,7 @@ export const Loader: VFC = () => {
 
   return (
     <>
-      <Body />
+      {isReady && <Body />}
       {welcomeScreen}
       <TouchDisclaimer />
     </>
