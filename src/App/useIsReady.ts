@@ -1,31 +1,31 @@
-import {useLayoutEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
+
+import {useWillMount} from '../useWillMount';
 
 export const useIsReady = () => {
   const [isReady, setIsReady] = useState(false);
 
+  const wake = () => {
+    // eslint-disable-next-line
+    removeListeners();
+
+    window.setTimeout(() => {
+      setIsReady(true);
+    }, 333);
+  };
+
+  const removeListeners = () => {
+    window.removeEventListener('mousemove', wake);
+    window.removeEventListener('keydown', wake);
+  };
+
   // We wanna make super sure the listeners are mounted before the user starts playing with us
-  useLayoutEffect(() => {
-    const wake = () => {
-      window.setTimeout(() => {
-        setIsReady(true);
-      }, 333);
-
-      // eslint-disable-next-line
-      removeListeners();
-    };
-
-    const removeListeners = () => {
-      window.removeEventListener('mousemove', wake);
-      window.removeEventListener('keydown', wake);
-    };
-
+  useWillMount(() => {
     window.addEventListener('mousemove', wake);
     window.addEventListener('keydown', wake);
+  });
 
-    return () => {
-      removeListeners();
-    };
-  }, []);
+  useEffect(() => removeListeners, []);
 
   return isReady;
 };

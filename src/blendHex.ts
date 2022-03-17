@@ -10,6 +10,7 @@ const substringToNumber = (hex: string, start: number, end?: number) => {
   return parseInt(target, 16);
 };
 
+// eg: `#ABC123`
 const indices = [1, 3, 5];
 
 export const blendHex = (a: string, b: string) => {
