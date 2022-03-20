@@ -1,5 +1,7 @@
 import {render} from 'react-dom';
 
+import './spa';
+
 import {App} from './App';
 import './style';
 
