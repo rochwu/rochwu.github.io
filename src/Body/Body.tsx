@@ -4,7 +4,7 @@ import {useDrag} from '@use-gesture/react';
 import {useSetRecoilState} from 'recoil';
 
 import {AppLoop} from '../AppLoop';
-import {DayProvider} from '../StyledContext';
+import {DayTheme} from '../StyledContext';
 import {setUnlockState} from '../state';
 
 import {useWidthRefs} from './useWidthRefs';
@@ -60,9 +60,9 @@ export const Body: VFC = () => {
     <Container ref={ref} style={widthStyle}>
       <MirroredContent style={widthStyle} />
       <Window style={windowStyle}>
-        <DayProvider>
+        <DayTheme>
           <MirroredContent style={widthStyle} />
-        </DayProvider>
+        </DayTheme>
       </Window>
       <Slider {...bind()} atPercent={percent} />
       <AppLoop />

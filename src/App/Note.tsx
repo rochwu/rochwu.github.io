@@ -1,12 +1,10 @@
 import {VFC} from 'react';
 import styled from '@emotion/styled';
 
-import {TEXT} from '../constants';
 import {ResponsiveLevel, useResponsiveLevel} from '../ResponsiveContext';
 
 const Container = styled.div({
   position: 'absolute',
-  color: TEXT.COLOR,
   fontFamily: `'Source Code Pro', 'Andale Mono', monospace`,
   textTransform: 'uppercase',
   fontSize: '0.75em',

@@ -1,3 +1,3 @@
-import {NightProvider, DayProvider} from './Context';
+import {NightTheme, DayTheme} from './Context';
 
-export {NightProvider, DayProvider};
+export {NightTheme, DayTheme};

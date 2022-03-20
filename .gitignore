@@ -1,6 +1,3 @@
 build/
 node_modules/
-src/react-app-env.d.ts
-yarn.lock
 .DS_Store
-public/favicon.ico
