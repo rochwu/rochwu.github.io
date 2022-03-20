@@ -1,4 +1,4 @@
-import {useRef, useState, VFC, PointerEvent} from 'react';
+import {useRef, useState, VFC, PointerEvent, useEffect} from 'react';
 import styled from '@emotion/styled';
 import {useDrag} from '@use-gesture/react';
 import {useSetRecoilState} from 'recoil';
@@ -36,6 +36,11 @@ export const Body: VFC = () => {
   const {width, offset} = useWidthRefs(ref);
 
   const unlock = useSetRecoilState(setUnlockState);
+
+  useEffect(() => {
+    // Not a debug console, just to let console people I know wussup
+    console.log(`oh? you are here, mhm, I promise you can reach that button`);
+  }, []);
 
   const bind = useDrag<PointerEvent<HTMLDivElement>>(({xy: [x]}) => {
     const normalX = x - offset.current;
