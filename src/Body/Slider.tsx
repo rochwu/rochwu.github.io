@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import {HTMLAttributes, useEffect, useRef, VFC} from 'react';
+import {HTMLAttributes, VFC} from 'react';
 
 import {sliderWidth} from './dimensions';
 import {WaveBar} from './WaveBar';

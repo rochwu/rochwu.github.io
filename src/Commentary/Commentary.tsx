@@ -6,7 +6,7 @@ import {commentaryState} from '../state';
 const Container = styled.div({
   display: 'inline-flex',
   justifyContent: 'center',
-  alignItems: 'end',
+  alignItems: 'center',
   width: '100%',
 });
 

@@ -1,7 +1,8 @@
 import {Metadata} from '../types';
 
 const percent = (container: number, child: number) => {
-  const difference = container - child;
+  // else: when viewport is shrunk unbelievably small
+  const difference = container >= child ? container - child : container * 0.9;
   const newPosition = Math.random() * difference;
 
   return (newPosition / container) * 100;

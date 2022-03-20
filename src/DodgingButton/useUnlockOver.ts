@@ -23,7 +23,7 @@ export const useUnlockOver = () => {
     },
     over() {
       // Same render cycle overed can be false
-      if (entered.current && overed.current) {
+      if (entered.current || overed.current) {
         return;
       }
 
