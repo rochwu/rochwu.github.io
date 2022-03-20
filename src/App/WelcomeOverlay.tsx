@@ -11,13 +11,13 @@ const Container = styled(animated.div)({
   top: '0',
   height: '100%',
   width: '100%',
+  color: TEXT.COLOR,
 });
 
 const WelcomeMessage = styled(animated.div)({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  color: TEXT.COLOR,
   textTransform: 'uppercase',
   fontSize: '1em',
   height: '100%',

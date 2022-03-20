@@ -4,7 +4,7 @@ import {RecoilRoot} from 'recoil';
 import {GpsProvider} from '../GpsContext';
 import {ResponsiveProvider} from '../ResponsiveContext';
 import {SyncedProvider} from '../SyncedContext';
-import {NightProvider} from '../StyledContext';
+import {NightTheme} from '../StyledContext';
 
 import {Loader} from './Loader';
 import {DefineViewport} from './DefineViewport';
@@ -12,7 +12,7 @@ import {DefineViewport} from './DefineViewport';
 export const App: VFC = () => {
   useEffect(() => {
     // Not a debug console, just to let console people I know wussup
-    console.log(`oh? you are here, mhm, there are ways to reach that button`);
+    console.log(`oh? you are here, mhm, I promise you can reach that button`);
   }, []);
 
   return (
@@ -20,11 +20,11 @@ export const App: VFC = () => {
       <GpsProvider>
         <ResponsiveProvider>
           <SyncedProvider>
-            <NightProvider>
+            <NightTheme>
               <DefineViewport>
                 <Loader />
               </DefineViewport>
-            </NightProvider>
+            </NightTheme>
           </SyncedProvider>
         </ResponsiveProvider>
       </GpsProvider>

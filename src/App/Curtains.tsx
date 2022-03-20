@@ -1,16 +1,17 @@
 import {VFC, useState} from 'react';
 import styled, {CSSObject} from '@emotion/styled';
+import {Theme, useTheme} from '@emotion/react';
 import {animated, easings, useSpring} from 'react-spring';
 
-import {APP, BODY, TEXT} from '../constants';
+import {APP} from '../constants';
 
-const curtainStyle: CSSObject = {
+const curtainStyle = ({theme}: {theme: Theme}): CSSObject => ({
   top: '0',
   position: 'absolute',
   height: '100%',
-  backgroundColor: BODY.BACK_COLOR, // TODO: Sync with style.css
+  backgroundColor: theme.background,
   width: '50%',
-};
+});
 
 const Left = styled(animated.div)(curtainStyle, {
   left: '0',
@@ -31,6 +32,7 @@ const halfWidth = APP.WIDTH / 2;
 
 export const Curtains: VFC<{shouldShow: boolean}> = ({shouldShow}) => {
   const [shouldRender, setShouldRender] = useState(true);
+  const theme = useTheme();
 
   const common = {
     onRest: () => setShouldRender(false),
@@ -50,9 +52,9 @@ export const Curtains: VFC<{shouldShow: boolean}> = ({shouldShow}) => {
 
   const rightStyle = useSpring({
     ...common,
-    from: {translateX: '0', color: TEXT.COLOR},
+    from: {translateX: '0', color: theme.text},
     translateX: `${halfWidth}px`,
-    color: BODY.BACK_COLOR,
+    color: theme.background,
   });
 
   if (!shouldRender) {

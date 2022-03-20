@@ -11,7 +11,9 @@ export const CommentaryHandler: VFC<LoopProps> = (props) => {
   const setCommentary = useSetRecoilState(commentaryState);
 
   useEffect(() => {
-    setCommentary(comment(props));
+    const commentary = comment(props);
+
+    setCommentary(commentary);
   }, [attempts]);
 
   return null;

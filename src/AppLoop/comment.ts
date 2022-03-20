@@ -6,7 +6,6 @@ import {LoopProps} from './types';
 
 const WONDER_CASES = 5;
 
-// TODO: This used to take var in its language, should I revisit?
 // Keep language wholesome still though, wholesomeish
 const readScript = (index: number | undefined) => {
   switch (index) {
