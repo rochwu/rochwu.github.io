@@ -1,8 +1,8 @@
 import {VFC, HTMLAttributes} from 'react';
 import styled from '@emotion/styled';
 
-import {Header} from '../Header';
-import {Main} from '../Main';
+import {Header} from './Header';
+import {Main} from './Main';
 
 const Container = styled.div(
   {
@@ -17,7 +17,7 @@ const Container = styled.div(
   }),
 );
 
-export const MirroredContent: VFC<HTMLAttributes<HTMLDivElement>> = (props) => {
+export const Content: VFC<HTMLAttributes<HTMLDivElement>> = (props) => {
   return (
     <Container {...props}>
       <Header />
