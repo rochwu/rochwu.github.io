@@ -10,9 +10,9 @@ const Container = styled.div({
 });
 
 const Be = styled.div({
-  display: 'flex',
   color: 'transparent',
   backgroundClip: 'text',
+  backgroundColor: '#51def0',
   backgroundImage: radialGradients([
     '10% 90%, #8ea0ce',
     '88% 10%, #c3d8e6',
