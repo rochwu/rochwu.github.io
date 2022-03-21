@@ -85,7 +85,7 @@ export const Option: FC<Props> = ({
       {...props}
     >
       <Text isActive={isActive || isHighlighted}>{children}</Text>
-      {true && <Highlight />}
+      {isHighlighted && <Highlight />}
     </Container>
   );
 };
