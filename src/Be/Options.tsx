@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import {NavigableOption} from './NavigableOption';
 import {DefaultOption} from './DefaultOption';
 import {actions, useDuckDispatch} from './duck';
-import {options} from './options';
+import {paths} from './paths';
 
 const Container = styled.div({
   position: 'relative',
@@ -47,7 +47,7 @@ export const Options: VFC = () => {
       />
       {isOpen && (
         <Absolute onMouseEnter={open} onMouseLeave={close}>
-          {options.map(([to, label], index) => (
+          {paths.map(([to, label], index) => (
             <NavigableOption to={to} identifier={index + 1} key={label}>
               {label}
             </NavigableOption>
