@@ -1,7 +1,8 @@
 import {VFC} from 'react';
 import styled from '@emotion/styled';
 
-import {Text} from './Text';
+import {Options} from './Options';
+import {DuckProvider} from './duck';
 
 const Container = styled.div({
   display: 'flex',
@@ -9,13 +10,16 @@ const Container = styled.div({
   alignItems: 'center',
   width: '100%',
   height: '100%',
+  fontSize: '2em',
 });
 
 // TODO: Maybe display options here
 export const Be: VFC = () => {
   return (
-    <Container>
-      <Text />
-    </Container>
+    <DuckProvider>
+      <Container>
+        <Options />
+      </Container>
+    </DuckProvider>
   );
 };
