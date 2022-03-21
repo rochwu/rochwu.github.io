@@ -1,6 +1,6 @@
 import {VFC} from 'react';
 
-import {Body} from '../Body';
+import {ContentMirrored} from '../ContentMirrored';
 
 import {Curtains} from './Curtains';
 import {useIsReady} from './useIsReady';
@@ -12,7 +12,7 @@ const Welcome: VFC = () => {
 
   return (
     <>
-      {isReady && <Body />}
+      {isReady && <ContentMirrored />}
       <Curtains shouldShow={!isReady} />
       <WelcomeOverlay shouldShow={!isReady} />
     </>
@@ -27,7 +27,7 @@ type Props = {
 export const Home: VFC<Props> = ({dontWelcome}) => {
   return (
     <>
-      {dontWelcome ? <Body /> : <Welcome />}
+      {dontWelcome ? <ContentMirrored /> : <Welcome />}
       <TouchDisclaimer />
     </>
   );
