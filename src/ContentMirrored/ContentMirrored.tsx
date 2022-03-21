@@ -6,10 +6,10 @@ import {useSetRecoilState} from 'recoil';
 import {AppLoop} from '../AppLoop';
 import {DayTheme} from '../StyledContext';
 import {setUnlockState} from '../state';
+import {Content} from '../Content';
 
 import {useWidthRefs} from './useWidthRefs';
 import {Slider} from './Slider';
-import {MirroredContent} from './MirroredContent';
 
 const Container = styled.div(
   {
@@ -29,7 +29,7 @@ const Window = styled.div({
   overflowX: 'hidden',
 });
 
-export const Body: VFC = () => {
+export const ContentMirrored: VFC = () => {
   const [percent, setPercent] = useState(() => 0);
 
   const ref = useRef<HTMLDivElement>(null);
@@ -63,10 +63,10 @@ export const Body: VFC = () => {
   // Heavily uses style to prevent styled from making hella stylesheets
   return (
     <Container ref={ref} style={widthStyle}>
-      <MirroredContent style={widthStyle} />
+      <Content style={widthStyle} />
       <Window style={windowStyle}>
         <DayTheme>
-          <MirroredContent style={widthStyle} />
+          <Content style={widthStyle} />
         </DayTheme>
       </Window>
       <Slider {...bind()} atPercent={percent} />
