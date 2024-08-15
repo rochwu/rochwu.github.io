@@ -20,16 +20,13 @@
   "devDependencies": {
     "@types/react": "17.0.20",
     "@types/react-dom": "17.0.9",
-    "gh-pages": "3.2.3",
     "typescript": "4.4.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "browserslist": [
     ">0.2%",
