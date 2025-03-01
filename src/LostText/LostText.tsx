@@ -5,12 +5,17 @@ import styled from '@emotion/styled';
 import {breakPositionState, setUnlockState} from '../state';
 import {ButtonText} from '../ButtonText';
 import {useGps} from '../GpsContext';
+import {goToGitHub} from '../goToGitHub';
 
-const Container = styled.div({
+const Container = styled.button({
+  all: 'unset',
+
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   position: 'absolute',
+
+  cursor: 'pointer',
 });
 
 export const LostText: VFC = () => {
@@ -42,7 +47,7 @@ export const LostText: VFC = () => {
   }
 
   return (
-    <Container aria-hidden style={style}>
+    <Container aria-hidden style={style} onClick={goToGitHub} tabIndex={-1}>
       <ButtonText />
     </Container>
   );

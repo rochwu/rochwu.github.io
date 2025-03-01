@@ -1,7 +1,7 @@
 import {useCallback} from 'react';
 import {atom, DefaultValue, selector, useSetRecoilState} from 'recoil';
 
-const KEY = 'unlocks' as const;
+const KEY = 'rochwu-unlocks' as const;
 
 type Unlocks = {
   keyboardFocus: boolean;

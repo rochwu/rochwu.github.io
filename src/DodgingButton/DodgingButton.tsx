@@ -13,10 +13,7 @@ import {Button} from './Button';
 import {useFocus} from './useFocus';
 import {newPosition} from './newPosition';
 import {useUnlockOver} from './useUnlockOver';
-
-const goToGithub = () => {
-  window.location.assign('https://github.com/rochwu');
-};
+import {goToGitHub} from '../goToGitHub';
 
 const PositionedButton: FC = ({children}) => {
   const gps = useGps();
@@ -78,7 +75,7 @@ const PositionedButton: FC = ({children}) => {
       style={{...style, ...focusStyle}}
       tabIndex={tabIndex}
       onBlur={unfocus}
-      onClick={goToGithub}
+      onClick={goToGitHub}
       onFocus={focus}
       onMouseEnter={dodge}
       onMouseLeave={leave}
