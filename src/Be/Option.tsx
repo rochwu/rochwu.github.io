@@ -1,5 +1,4 @@
 import {
-  FC,
   FocusEventHandler,
   HTMLAttributes,
   KeyboardEventHandler,
@@ -28,7 +27,7 @@ const Text = styled.div<{isActive?: boolean}>(({isActive, theme}) => {
 
 type Props = HTMLAttributes<HTMLDivElement> & {isActive?: boolean};
 
-export const Option: FC<Props> = ({
+export const Option = ({
   children,
   isActive,
   onMouseEnter,
@@ -37,7 +36,7 @@ export const Option: FC<Props> = ({
   onKeyUp,
   onBlur,
   ...props
-}) => {
+}: Props) => {
   const [isHighlighted, setHighlight] = useState(false);
 
   const enter: MouseEventHandler<HTMLDivElement> = (event) => {

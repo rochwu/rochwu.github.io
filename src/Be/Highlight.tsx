@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import {VFC} from 'react';
 
 import {radialGradients} from './radialGradients';
 
@@ -23,7 +22,7 @@ const Be = styled.div({
   },
 });
 
-export const Highlight: VFC = () => {
+export const Highlight = () => {
   return (
     <Container>
       <Be />

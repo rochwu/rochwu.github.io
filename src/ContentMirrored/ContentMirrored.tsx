@@ -1,4 +1,4 @@
-import {useRef, useState, VFC, PointerEvent, useEffect} from 'react';
+import {useRef, useState, PointerEvent, useEffect} from 'react';
 import styled from '@emotion/styled';
 import {useDrag} from '@use-gesture/react';
 import {useSetRecoilState} from 'recoil';
@@ -29,7 +29,7 @@ const Window = styled.div({
   overflowX: 'hidden',
 });
 
-export const ContentMirrored: VFC = () => {
+export const ContentMirrored = () => {
   const [percent, setPercent] = useState(() => 0);
 
   const ref = useRef<HTMLDivElement>(null);

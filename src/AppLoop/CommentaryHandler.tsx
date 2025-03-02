@@ -1,4 +1,4 @@
-import {useEffect, VFC} from 'react';
+import {useEffect} from 'react';
 import {useSetRecoilState} from 'recoil';
 
 import {commentaryState} from '../state';
@@ -6,7 +6,7 @@ import {commentaryState} from '../state';
 import {LoopProps} from './types';
 import {comment} from './comment';
 
-export const CommentaryHandler: VFC<LoopProps> = (props) => {
+export const CommentaryHandler = (props: LoopProps) => {
   const {attempts} = props;
   const setCommentary = useSetRecoilState(commentaryState);
 

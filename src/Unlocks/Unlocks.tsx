@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import {useEffect, useState, VFC} from 'react';
+import {useEffect, useState} from 'react';
 import {animated, useSpring} from '@react-spring/web';
 import {useRecoilValue} from 'recoil';
 
@@ -42,7 +42,7 @@ const flipStyle = (flipped: boolean) => {
   };
 };
 
-export const Unlocks: VFC = () => {
+export const Unlocks = () => {
   const count = useRecoilValue(getUnlocksState);
   const hasUnlocks = count > 0;
 

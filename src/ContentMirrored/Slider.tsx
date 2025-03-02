@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import {HTMLAttributes, VFC} from 'react';
+import {HTMLAttributes} from 'react';
 
 import {sliderWidth} from './dimensions';
 import {WaveBar} from './WaveBar';
@@ -18,7 +18,7 @@ const Container = styled.div({
 
 type Props = HTMLAttributes<HTMLDivElement> & {atPercent: number};
 
-export const Slider: VFC<Props> = ({atPercent, ...props}) => {
+export const Slider = ({atPercent, ...props}: Props) => {
   const isCorner = atPercent === 0;
 
   return (

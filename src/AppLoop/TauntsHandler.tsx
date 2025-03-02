@@ -1,4 +1,4 @@
-import {useEffect, VFC} from 'react';
+import {useEffect} from 'react';
 import {useSetRecoilState} from 'recoil';
 
 import {useGps} from '../GpsContext';
@@ -9,7 +9,7 @@ import {tauntsState} from '../state';
 import {taunt} from './taunt';
 import {LoopProps} from './types';
 
-export const TauntsHandler: VFC<LoopProps> = ({attempts, starsFelled}) => {
+export const TauntsHandler = ({attempts, starsFelled}: LoopProps) => {
   const gps = useGps();
   const schedule = useSchedule();
 

@@ -1,4 +1,4 @@
-import {FC, ReactNode, useLayoutEffect, useRef, useState} from 'react';
+import {ReactNode, useLayoutEffect, useRef, useState} from 'react';
 import styled, {CSSObject} from '@emotion/styled';
 
 type Props = Pick<CSSObject, 'height'>;

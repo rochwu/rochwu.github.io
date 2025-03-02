@@ -1,5 +1,3 @@
-import {VFC} from 'react';
-
 import {ContentMirrored} from '../ContentMirrored';
 
 import {Curtains} from './Curtains';
@@ -7,7 +5,7 @@ import {useIsReady} from './useIsReady';
 import {WelcomeOverlay} from './WelcomeOverlay';
 import {TouchDisclaimer} from './TouchDisclaimer';
 
-const Welcome: VFC = () => {
+const Welcome = () => {
   const isReady = useIsReady();
 
   return (
@@ -24,7 +22,7 @@ type Props = {
 };
 
 // TODO: Maybe add visibility change to remount this when inactive
-export const Home: VFC<Props> = ({dontWelcome}) => {
+export const Home = ({dontWelcome}: Props) => {
   return (
     <>
       {dontWelcome ? <ContentMirrored /> : <Welcome />}

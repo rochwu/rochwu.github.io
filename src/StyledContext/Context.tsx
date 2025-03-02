@@ -1,4 +1,4 @@
-import {FC, ReactNode} from 'react';
+import {ReactNode} from 'react';
 import {ThemeProvider} from '@emotion/react';
 
 import {APP, BODY, BUTTON, TEXT} from '../constants';

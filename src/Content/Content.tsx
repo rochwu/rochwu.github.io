@@ -1,4 +1,4 @@
-import {VFC, HTMLAttributes} from 'react';
+import {HTMLAttributes} from 'react';
 import styled from '@emotion/styled';
 
 import {Header} from './Header';
@@ -17,7 +17,7 @@ const Container = styled.div(
   }),
 );
 
-export const Content: VFC<HTMLAttributes<HTMLDivElement>> = (props) => {
+export const Content = (props: HTMLAttributes<HTMLDivElement>) => {
   return (
     <Container {...props}>
       <Header />

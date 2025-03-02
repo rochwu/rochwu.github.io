@@ -1,4 +1,4 @@
-import {FocusEventHandler, useState, VFC} from 'react';
+import {FocusEventHandler, useState} from 'react';
 import styled from '@emotion/styled';
 
 import {NavigableOption} from './NavigableOption';
@@ -16,7 +16,7 @@ const Absolute = styled.div({
   position: 'absolute',
 });
 
-export const Options: VFC = () => {
+export const Options = () => {
   const dispatch = useDuckDispatch();
 
   const [isOpen, setOpen] = useState(false);

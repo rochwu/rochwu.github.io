@@ -26,6 +26,7 @@
   "scripts": {
     "start": "vite dev",
     "build": "vite build",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "preview": "vite build; vite preview --open"
   }
 }

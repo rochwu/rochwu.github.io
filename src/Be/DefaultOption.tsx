@@ -1,9 +1,4 @@
-import {
-  HTMLAttributes,
-  KeyboardEventHandler,
-  MouseEventHandler,
-  VFC,
-} from 'react';
+import {HTMLAttributes, KeyboardEventHandler, MouseEventHandler} from 'react';
 
 import {actions, useDuckDispatch, useDuckState} from './duck';
 import {Option} from './Option';
@@ -12,12 +7,12 @@ type Props = HTMLAttributes<HTMLDivElement> & {
   identifier: 0;
 };
 
-export const DefaultOption: VFC<Props> = ({
+export const DefaultOption = ({
   identifier,
   onMouseEnter,
   onKeyUp,
   ...props
-}) => {
+}: Props) => {
   const state = useDuckState();
   const dispatch = useDuckDispatch();
 

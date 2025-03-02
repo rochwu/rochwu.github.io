@@ -1,4 +1,4 @@
-import {FC, KeyboardEventHandler, ReactNode} from 'react';
+import {KeyboardEventHandler, ReactNode} from 'react';
 import {useNavigate} from 'react-router-dom';
 
 import {actions, useDuckDispatch} from './duck';

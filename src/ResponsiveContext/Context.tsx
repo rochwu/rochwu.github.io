@@ -1,6 +1,5 @@
 import {
   createContext,
-  FC,
   ReactNode,
   useContext,
   useEffect,

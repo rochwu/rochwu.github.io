@@ -1,4 +1,3 @@
-import {VFC} from 'react';
 import {useRecoilValue} from 'recoil';
 
 import {
@@ -11,7 +10,7 @@ import {TauntsHandler} from './TauntsHandler';
 import {CommentaryHandler} from './CommentaryHandler';
 import {TitleHandler} from './TitleHandler';
 
-export const AppLoop: VFC = () => {
+export const AppLoop = () => {
   const isIncrementalGame = useRecoilValue(isIncrementalGameState);
   const attempts = useRecoilValue(attemptsState);
   const starsFelled = useRecoilValue(starsFelledState);

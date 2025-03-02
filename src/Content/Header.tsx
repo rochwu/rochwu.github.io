@@ -1,4 +1,3 @@
-import {VFC} from 'react';
 import styled from '@emotion/styled';
 
 import {Commentary} from '../Commentary';
@@ -8,7 +7,7 @@ const Container = styled.div({
   display: 'flex',
 });
 
-export const Header: VFC = () => {
+export const Header = () => {
   return (
     <Container aria-hidden>
       <BadgeScore />

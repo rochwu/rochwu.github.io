@@ -1,4 +1,4 @@
-import {useMemo, VFC} from 'react';
+import {useMemo} from 'react';
 import {useRecoilValue} from 'recoil';
 
 import {
@@ -9,7 +9,7 @@ import {
 } from '../state';
 import {Taunt} from '../Taunt';
 
-const TauntsMap: VFC = () => {
+const TauntsMap = () => {
   const taunts = useRecoilValue(tauntsState);
   const attempts = useRecoilValue(attemptsState);
   const starsFelled = useRecoilValue(starsFelledState);
@@ -27,7 +27,7 @@ const TauntsMap: VFC = () => {
   return <>{elements}</>;
 };
 
-export const Taunts: VFC = () => {
+export const Taunts = () => {
   const isIncrementalGame = useRecoilValue(isIncrementalGameState);
 
   if (!isIncrementalGame) {

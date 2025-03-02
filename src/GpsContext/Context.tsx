@@ -1,4 +1,4 @@
-import {createContext, FC, ReactNode, useContext} from 'react';
+import {createContext, ReactNode, useContext} from 'react';
 
 import {Metadata} from '../types';
 

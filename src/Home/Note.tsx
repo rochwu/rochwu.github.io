@@ -1,4 +1,3 @@
-import {VFC} from 'react';
 import styled from '@emotion/styled';
 
 import {ResponsiveLevel, useResponsiveLevel} from '../ResponsiveContext';
@@ -11,7 +10,7 @@ const Container = styled.div({
   left: '2px',
 });
 
-export const Note: VFC = () => {
+export const Note = () => {
   const level = useResponsiveLevel();
 
   const note =

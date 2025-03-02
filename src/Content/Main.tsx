@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import {useLayoutEffect, useRef, VFC} from 'react';
+import {useLayoutEffect, useRef} from 'react';
 
 import {DodgingButton} from '../DodgingButton';
 import {useGps} from '../GpsContext';
@@ -13,7 +13,7 @@ const Container = styled.div({
   height: '100%',
 });
 
-export const Main: VFC = () => {
+export const Main = () => {
   const container = useRef<HTMLDivElement>(null);
   const gps = useGps();
 

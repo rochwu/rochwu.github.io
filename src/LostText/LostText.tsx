@@ -1,4 +1,4 @@
-import {CSSProperties, useLayoutEffect, useState, VFC} from 'react';
+import {CSSProperties, useLayoutEffect, useState} from 'react';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 import styled from '@emotion/styled';
 
@@ -18,7 +18,7 @@ const Container = styled.button({
   cursor: 'pointer',
 });
 
-export const LostText: VFC = () => {
+export const LostText = () => {
   const gps = useGps();
   const [style, setStyle] = useState<CSSProperties>();
 

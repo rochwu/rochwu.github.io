@@ -1,4 +1,4 @@
-import {useEffect, VFC} from 'react';
+import {useEffect} from 'react';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 
 import {setUnlockState, starsFelledState} from '../state';
@@ -6,7 +6,7 @@ import {BADGE} from '../constants';
 
 import {Badge} from './Badge';
 
-export const BadgeFelledStars: VFC = () => {
+export const BadgeFelledStars = () => {
   const score = useRecoilValue(starsFelledState);
   const unlock = useSetRecoilState(setUnlockState);
 
