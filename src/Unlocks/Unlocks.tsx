@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import {useEffect, useState, VFC} from 'react';
-import {animated, useSpring} from 'react-spring';
+import {animated, useSpring} from '@react-spring/web';
 import {useRecoilValue} from 'recoil';
 
 import {getUnlocksState, UNLOCKS_MAX, useClearUnlocks} from '../state';

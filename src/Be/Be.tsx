@@ -1,4 +1,3 @@
-import {VFC} from 'react';
 import styled from '@emotion/styled';
 
 import {Options} from './Options';
@@ -14,7 +13,7 @@ const Container = styled.div({
 });
 
 // TODO: Maybe display options here
-export const Be: VFC = () => {
+export const Be = () => {
   return (
     <DuckProvider>
       <Container>

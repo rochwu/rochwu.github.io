@@ -1,4 +1,4 @@
-import {FC, useLayoutEffect, useRef, useState} from 'react';
+import {FC, ReactNode, useLayoutEffect, useRef, useState} from 'react';
 import styled, {CSSObject} from '@emotion/styled';
 
 type Props = Pick<CSSObject, 'height'>;
@@ -15,7 +15,7 @@ const Container = styled.div<Props>(
 /**
  * Mobile friendlily, defines height
  */
-export const DefineViewport: FC = ({children}) => {
+export const DefineViewport = ({children}: {children: ReactNode}) => {
   const [height, setHeight] = useState<Props['height']>('100vh');
   const ref = useRef<HTMLDivElement>(null);
 

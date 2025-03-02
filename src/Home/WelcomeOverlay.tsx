@@ -1,6 +1,6 @@
-import {useEffect, useRef, useState, VFC} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import styled from '@emotion/styled';
-import {useSpring, animated} from 'react-spring';
+import {useSpring, animated} from '@react-spring/web';
 
 import {TEXT} from '../constants';
 
@@ -23,7 +23,7 @@ const WelcomeMessage = styled(animated.div)({
   height: '100%',
 });
 
-export const WelcomeOverlay: VFC<{shouldShow: boolean}> = ({shouldShow}) => {
+export const WelcomeOverlay = ({shouldShow}: {shouldShow: boolean}) => {
   const [shouldRender, setShouldRender] = useState(true);
   const [title, setTitle] = useState('unnecessary fancy welcoming screen');
   const handle = useRef<number>();

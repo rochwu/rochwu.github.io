@@ -1,4 +1,4 @@
-import {FC, KeyboardEventHandler} from 'react';
+import {FC, KeyboardEventHandler, ReactNode} from 'react';
 import {useNavigate} from 'react-router-dom';
 
 import {actions, useDuckDispatch} from './duck';
@@ -7,9 +7,10 @@ import {Option} from './Option';
 type Props = {
   to: string;
   identifier: number;
+  children: ReactNode;
 };
 
-export const NavigableOption: FC<Props> = ({children, to, identifier}) => {
+export const NavigableOption = ({children, to, identifier}: Props) => {
   const dispatch = useDuckDispatch();
   const navigage = useNavigate();
 

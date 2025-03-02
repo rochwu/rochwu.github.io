@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {FC, ReactNode} from 'react';
 import {ThemeProvider} from '@emotion/react';
 
 import {APP, BODY, BUTTON, TEXT} from '../constants';
@@ -24,10 +24,12 @@ const dayTheme: Theme = {
   app: TEXT.COLOR,
 };
 
-export const NightTheme: FC = ({children}) => {
+type Props = {children: ReactNode};
+
+export const NightTheme = ({children}: Props) => {
   return <ThemeProvider theme={nightTheme}>{children}</ThemeProvider>;
 };
 
-export const DayTheme: FC = ({children}) => {
+export const DayTheme = ({children}: Props) => {
   return <ThemeProvider theme={dayTheme}>{children}</ThemeProvider>;
 };

@@ -1,4 +1,11 @@
-import {createContext, FC, useContext, useEffect, useState} from 'react';
+import {
+  createContext,
+  FC,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 export enum ResponsiveLevel {
   Small = 'small',
@@ -20,7 +27,7 @@ const getLevel = (width: number): ResponsiveLevel => {
   return ResponsiveLevel.Large;
 };
 
-export const ResponsiveProvider: FC = ({children}) => {
+export const ResponsiveProvider = ({children}: {children: ReactNode}) => {
   const [responsiveness, setResponsiveness] = useState(() =>
     getLevel(document.body.clientWidth),
   );

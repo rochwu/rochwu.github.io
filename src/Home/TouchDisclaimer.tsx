@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import {useState, VFC} from 'react';
-import {animated, useSpring} from 'react-spring';
+import {useState} from 'react';
+import {animated, useSpring} from '@react-spring/web';
 
 import {APP} from '../constants';
 import {isTouchDevice} from '../isTouchDevice';
@@ -19,7 +19,7 @@ const Container = styled(animated.div)({
   textAlign: 'center',
 });
 
-export const TouchDisclaimer: VFC = () => {
+export const TouchDisclaimer = () => {
   const [shouldRender, setShouldRender] = useState(() => isTouchDevice());
 
   const [style, api] = useSpring(() => ({

@@ -1,7 +1,7 @@
-import {VFC, useState} from 'react';
+import {useState} from 'react';
 import styled, {CSSObject} from '@emotion/styled';
 import {Theme, useTheme} from '@emotion/react';
-import {animated, easings, useSpring} from 'react-spring';
+import {animated, easings, useSpring} from '@react-spring/web';
 
 import {APP} from '../constants';
 
@@ -30,7 +30,7 @@ const curtainMessage = 'pointless aspect ratio transition';
 
 const halfWidth = APP.WIDTH / 2;
 
-export const Curtains: VFC<{shouldShow: boolean}> = ({shouldShow}) => {
+export const Curtains = ({shouldShow}: {shouldShow: boolean}) => {
   const [shouldRender, setShouldRender] = useState(true);
   const theme = useTheme();
 

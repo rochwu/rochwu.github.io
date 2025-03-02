@@ -1,4 +1,4 @@
-import {createContext, FC, useContext} from 'react';
+import {createContext, FC, ReactNode, useContext} from 'react';
 
 import {Metadata} from '../types';
 
@@ -26,7 +26,7 @@ export const useGps = () => {
   return useContext(Context);
 };
 
-export const GpsProvider: FC = ({children}) => {
+export const GpsProvider = ({children}: {children: ReactNode}) => {
   const gps = useGps();
   gps.get = (id) => {
     return gps.byId[id];

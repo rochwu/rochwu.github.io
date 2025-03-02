@@ -1,4 +1,10 @@
-import {createContext, Dispatch, FC, useContext, useReducer} from 'react';
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  useContext,
+  useReducer,
+} from 'react';
 
 export type State = {
   selectedId: number;
@@ -43,7 +49,7 @@ export const useDuckDispatch = () => {
   return useContext(SetContext);
 };
 
-export const DuckProvider: FC = ({children}) => {
+export const DuckProvider = ({children}: {children: ReactNode}) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (

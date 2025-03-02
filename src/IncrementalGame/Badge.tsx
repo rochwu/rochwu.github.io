@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import {FC} from 'react';
-import {animated, useTransition} from 'react-spring';
+import {ReactNode} from 'react';
+import {animated, useTransition} from '@react-spring/web';
 
 import {BADGE} from '../constants';
 
@@ -26,9 +26,10 @@ const Span = styled(animated.span)({
 export type BadgeProps = ContainerProps & {
   backgroundColor: string;
   color: string;
+  children: ReactNode;
 };
 
-export const Badge: FC<BadgeProps> = ({children, isVisible, ...spanProps}) => {
+export const Badge = ({children, isVisible, ...spanProps}: BadgeProps) => {
   // TODO: incorporate gaming flash mount
   const transitions = useTransition(isVisible, {
     from: {opacity: 0, ...spanProps},

@@ -1,6 +1,6 @@
-import {useRef, useState, VFC} from 'react';
+import {useRef, useState} from 'react';
 import styled from '@emotion/styled';
-import {animated, useSpring} from 'react-spring';
+import {animated, useSpring} from '@react-spring/web';
 import {useSetRecoilState} from 'recoil';
 
 import {MILESTONES} from '../constants';
@@ -19,11 +19,11 @@ const Animation = styled(animated.div)({
 const range = [0, 0.1, 1];
 const output = [1, 1.5, 1];
 
-const AnimatedTaunt: VFC<Omit<TauntProps, 'top' | 'left'>> = ({
+const AnimatedTaunt = ({
   today,
   birthday,
   insult,
-}) => {
+}: Omit<TauntProps, 'top' | 'left'>) => {
   const lifespan = today - birthday;
   const age = 100 - (lifespan / MILESTONES.MAX_TAUNT_AGE) * 100;
 
@@ -103,7 +103,7 @@ const AnimatedTaunt: VFC<Omit<TauntProps, 'top' | 'left'>> = ({
   );
 };
 
-export const Taunt: VFC<TauntProps> = ({top, left, ...props}) => {
+export const Taunt = ({top, left, ...props}: TauntProps) => {
   return (
     <Position top={top} left={left}>
       <AnimatedTaunt {...props} />

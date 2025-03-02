@@ -1,4 +1,4 @@
-import {createContext, FC, useContext} from 'react';
+import {createContext, ReactNode, useContext} from 'react';
 
 import {setAll} from './all';
 import {setOnce} from './once';
@@ -15,7 +15,7 @@ export type Synced = typeof initialValue;
 export const Context = createContext(initialValue);
 const Provider = Context.Provider;
 
-export const SyncedProvider: FC = ({children}) => {
+export const SyncedProvider = ({children}: {children: ReactNode}) => {
   const context = useContext(Context);
 
   return <Provider value={context}>{children}</Provider>;

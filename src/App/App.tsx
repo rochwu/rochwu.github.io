@@ -1,4 +1,3 @@
-import {VFC} from 'react';
 import {RecoilRoot} from 'recoil';
 import {BrowserRouter} from 'react-router-dom';
 
@@ -10,7 +9,7 @@ import {NightTheme} from '../StyledContext';
 import {Loader} from './Loader';
 import {DefineViewport} from './DefineViewport';
 
-export const App: VFC = () => {
+export const App = () => {
   return (
     <BrowserRouter>
       <RecoilRoot>

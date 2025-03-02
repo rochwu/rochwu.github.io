@@ -1,4 +1,4 @@
-import {CSSProperties, FC, MouseEventHandler, useState, VFC} from 'react';
+import {CSSProperties, MouseEventHandler, ReactNode, useState} from 'react';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 
 import {useGps} from '../GpsContext';
@@ -15,7 +15,7 @@ import {newPosition} from './newPosition';
 import {useUnlockOver} from './useUnlockOver';
 import {goToGitHub} from '../goToGitHub';
 
-const PositionedButton: FC = ({children}) => {
+const PositionedButton = ({children}: {children: ReactNode}) => {
   const gps = useGps();
   const ref = useButtonRef();
   const schedule = useSchedule();
@@ -86,7 +86,7 @@ const PositionedButton: FC = ({children}) => {
   );
 };
 
-export const DodgingButton: VFC = () => {
+export const DodgingButton = () => {
   // PositionedButton renders a lot, we use children to minimize HidableText renders
   return (
     <PositionedButton>

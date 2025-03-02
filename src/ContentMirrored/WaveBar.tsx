@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import {useEffect, VFC} from 'react';
-import {animated, useSpring} from 'react-spring';
+import {useEffect} from 'react';
+import {animated, useSpring} from '@react-spring/web';
 
 import {sliderWidth} from './dimensions';
 
@@ -35,7 +35,7 @@ const randomInterval = () => {
   return interval;
 };
 
-export const WaveBar: VFC = () => {
+export const WaveBar = () => {
   const from = {
     width: '0%',
   };
